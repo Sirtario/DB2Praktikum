@@ -3,6 +3,10 @@ import java.sql.*;
 
 public class MainApp {
     public static void main(String[] args) throws SQLException {
+        ConnectToDB();
+    }
+
+    private static void ConnectToDB() {
         String connectionUrl =
                 "jdbc:sqlserver://68.183.223.224;"
                         + "database=KIS;"
