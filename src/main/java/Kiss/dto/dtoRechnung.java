@@ -1,4 +1,4 @@
-package dto;
+package Kiss.dto;
 
 public class dtoRechnung {
     private int rechnung_id;

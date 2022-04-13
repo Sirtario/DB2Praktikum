@@ -1,4 +1,4 @@
-package dto;
+package Kiss.dto;
 
 public class dtoAbteilung {
     private int abteilungsnummer;

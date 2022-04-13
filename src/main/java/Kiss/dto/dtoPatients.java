@@ -1,4 +1,4 @@
-package dto;
+package Kiss.dto;
 
 import java.sql.Date;
 

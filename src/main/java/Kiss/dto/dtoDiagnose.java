@@ -1,4 +1,4 @@
-package dto;
+package Kiss.dto;
 
 public class dtoDiagnose {
     private int diagnose_id;
