@@ -1,14 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="Kiss.controller.MainViewController"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Kiss.controller.MainViewController">
+   <children>
+       <AnchorPane prefHeight="50.0" prefWidth="600.0">
+           <MenuBar>
+               <menus>
+                   <Menu mnemonicParsing="false" text="File">
+                       <items>
+                           <MenuItem mnemonicParsing="false" text="Close" />
+                       </items>
+                   </Menu>
+                   <Menu mnemonicParsing="false" text="Edit">
+                       <items>
+                           <MenuItem mnemonicParsing="false" text="Delete" />
+                       </items>
+                   </Menu>
+                   <Menu mnemonicParsing="false" text="Help">
+                       <items>
+                           <MenuItem mnemonicParsing="false" text="About" />
+                       </items>
+                   </Menu>
+               </menus>
+           </MenuBar>
+       </AnchorPane>
+       <BorderPane prefHeight="350.0" prefWidth="600.0">
+           <TabPane prefHeight="350.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE">
+               <tabs>
+                   <Tab text="Tabelle 1">
+                       <content>
+                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                       </content>
+                   </Tab>
+                   <Tab text="Tabelle 2">
+                       <content>
+                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                       </content>
+                   </Tab>
+                   <Tab text="Tabelle 3">
+                       <content>
+                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                       </content>
+                   </Tab>
+               </tabs>
+           </TabPane>
+       </BorderPane>
+   </children>
 </AnchorPane>
