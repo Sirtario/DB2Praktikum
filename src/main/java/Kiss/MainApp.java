@@ -19,8 +19,8 @@ public class MainApp extends Application {
                         + "database=KIS;"
                         + "user=SA;"
                         + "password=DbServer2!;"
-                        + "encrypt=false;"
-                        + "trustServerCertificate=false;"
+                        + "encrypt=true;"
+                        + "trustServerCertificate=true;"
                         + "loginTimeout=30;";
 
 
