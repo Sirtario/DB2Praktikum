@@ -1,4 +1,4 @@
-package dto;
+package Kiss.dto;
 
 public class dtoBeds {
     private int bed_id;

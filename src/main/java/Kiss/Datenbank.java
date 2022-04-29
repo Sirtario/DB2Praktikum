@@ -1,4 +1,6 @@
-import dto.*;
+package Kiss;
+
+import Kiss.dto.*;
 
 import java.sql.*;
 import java.util.ArrayList;
