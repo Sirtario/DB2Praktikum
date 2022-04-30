@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="214.0" prefWidth="238.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Kiss.controller.LoginController">
+   <Label layoutX="97.0" layoutY="24.0" text="Login">
+      <font>
+         <Font name="System Bold" size="18.0" />
+      </font>
+   </Label>
+   <TextField fx:id="UserNameInput" layoutX="47.0" layoutY="78.0" />
+   <Label layoutX="97.0" layoutY="111.0" text="Password" />
+   <Label layoutX="95.0" layoutY="61.0" text="Username" />
+   <Button layoutX="99.0" layoutY="166.0" mnemonicParsing="false" onAction="#onLoginButtonClick" text="Login" />
+   <PasswordField fx:id="PasswordInput" layoutX="48.0" layoutY="128.0" />
+</AnchorPane>
