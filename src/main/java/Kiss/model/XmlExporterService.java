@@ -1,2 +1,7 @@
-package Kiss.model;public interface XmlExporterService {
+package Kiss.model;
+
+import javax.xml.parsers.ParserConfigurationException;
+
+public interface XmlExporterService {
+    public <T> void xmlFileFromObject(T dto);
 }
