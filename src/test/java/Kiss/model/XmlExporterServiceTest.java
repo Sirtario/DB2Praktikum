@@ -3,36 +3,44 @@ package Kiss.model;
 import Kiss.dto.dtoAbteilung;
 import jakarta.xml.bind.annotation.XmlElement;
 import jakarta.xml.bind.annotation.XmlRootElement;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
+import static org.junit.jupiter.api.Assertions.*;
+
 public class XmlExporterServiceTest {
 
+    private static final String EXPECTED_STRING_OBJECT = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n" +
+            "<testDummy>\n" +
+            "    <bescreibung>Das ist ein Test</bescreibung>\n" +
+            "    <name>TestDummy</name>\n" +
+            "</testDummy>\n";
+
+
+
     XmlExporterService underTest = new XmlExporterServiceImpl();
-
-    @BeforeEach
-    public void setup() {
-
-    }
-
-
     @Test
-   public void xmlFileFromObjectTest() {
-
-        String expect = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n" +
-                "<testDummy>\n" +
-                "    <bescreibung>Das ist ein Test</bescreibung>\n" +
-                "    <name>TestDummy</name>\n" +
-                "</testDummy>\n";
+   public void xmlStringFromObjectTest() {
         String actual = underTest.xmlStringFromObject(createTestDummy());
+        assertEquals(EXPECTED_STRING_OBJECT, actual);
 
-        assertEquals(expect, actual);
+   }
 
+   @Test
+   public void xmlFileFromObjectTest() {
+        underTest.xmlFileFromObject(createTestDummy());
+       Path fileName = Path.of("/ausgabe.xml");
+       String actual = new String();
+       try {
+           actual = Files.readString(fileName);
+       } catch (IOException e) {
+           throw new RuntimeException(e);
+       }
+
+       assertEquals(EXPECTED_STRING_OBJECT, actual);
    }
 
    private TestDummy createTestDummy() {
