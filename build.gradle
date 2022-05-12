@@ -13,7 +13,7 @@ dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
     implementation 'com.microsoft.sqlserver:mssql-jdbc:10.2.0.jre11'
-    implementation 'jakarta.xml.bind:jakarta.xml.bind-api:4.0.0'
+    implementation 'jakarta.xml.bind:jakarta.xml.bind-api:3.0.0'
     implementation 'com.sun.xml.bind:jaxb-impl:3.0.2'
     implementation 'org.eclipse.persistence:org.eclipse.persistence.moxy:3.0.2'
 }
