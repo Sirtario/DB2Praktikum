@@ -10,6 +10,7 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;
+import java.io.StringWriter;
 
 
 public class XmlExporterServiceImpl implements XmlExporterService{
@@ -17,24 +18,27 @@ public class XmlExporterServiceImpl implements XmlExporterService{
 
 
     @Override
-    public <T> void xmlFileFromObject (T dto) {
-
-        JAXBContext jaxbContext = null;
+    public <T> String xmlStringFromObject (T dto) {
 
         try {
-            jaxbContext = org.eclipse.persistence.jaxb.JAXBContextFactory
-                    .createContext(new Class[]{dtoAbteilung.class}, null);
+            JAXBContext jaxbContext = JAXBContext.newInstance(dto.getClass());
 
             Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
-            jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
 
-            jaxbMarshaller.marshal(dto, new File("/ausgabe.xml"));
+            jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+
+            StringWriter sw = new StringWriter();
+
+            jaxbMarshaller.marshal(dto, sw);
+
+            return sw.toString();
 
         } catch (JAXBException jaxbExc) {
             jaxbExc.printStackTrace();
         } catch ( Exception e) {
 
         }
+        return new String();
     }
 
 

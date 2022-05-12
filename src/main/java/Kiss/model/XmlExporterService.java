@@ -3,5 +3,5 @@ package Kiss.model;
 import javax.xml.parsers.ParserConfigurationException;
 
 public interface XmlExporterService {
-     public <T> void xmlFileFromObject(T dto);
+     public <T> String xmlStringFromObject(T dto);
 }
