@@ -1,70 +1,77 @@
 package Kiss.model;
 
-import Kiss.dto.dtoAbteilung;
-import jakarta.xml.bind.JAXBContext;
-import jakarta.xml.bind.JAXBException;
-import jakarta.xml.bind.Marshaller;
 import org.w3c.dom.Document;
+import org.w3c.dom.Element;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
-import java.io.File;
-import java.io.IOException;
+import javax.xml.transform.OutputKeys;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
+import java.io.InputStream;
 import java.io.StringWriter;
-import java.util.List;
+import java.sql.*;
 
 class XmlExporterServiceImpl implements XmlExporterService{
 
-    @Override
-    public <T> String xmlStringFromObject (T xmlDto) {
 
-        try {
-            Marshaller jaxbMarshaller = xmlCreater(xmlDto);
+    @Override
+    public String getXMLStringFromDatabase(String name, String password, String tableName) {
+
+        String result = new String();
+
+        try{
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder builder = factory.newDocumentBuilder();
+            Document doc = builder.newDocument();
+            Element results = doc.createElement("Results");
+            doc.appendChild(results);
+
+            Connection con = DatabaseConnector.ConnectToDB(name, password);
+
+            // Statement mit Benennung der Tablle
+            String query = "SELECT * FROM " + tableName;
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            ResultSetMetaData rsmd = rs.getMetaData();
+            int columns = rs.getMetaData().getColumnCount();
+
+            while (rs.next()) {
+                Element row = doc.createElement("Row");
+                results.appendChild(row);
+                for (int i = 1; i <= columns; i++) {
+                    String columnName = rsmd.getColumnName(i);
+                    Object value = rs.getObject(i);
+                    Element node = doc.createElement(columnName);
+                    node.appendChild(doc.createTextNode(value.toString()));
+                    row.appendChild(node);
+                }
+            }
+            DOMSource domSource = new DOMSource(doc);
+            TransformerFactory tf = TransformerFactory.newInstance();
+            Transformer transformer = tf.newTransformer();
+            transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+            transformer.setOutputProperty(OutputKeys.METHOD, "xml");
+            transformer.setOutputProperty(OutputKeys.ENCODING, "ISO-8859-1");
             StringWriter sw = new StringWriter();
+            StreamResult sr = new StreamResult(sw);
+            transformer.transform(domSource, sr);
 
-            jaxbMarshaller.marshal(xmlDto, sw);
+            result = sw.toString();
 
-            return sw.toString();
-        } catch (JAXBException jaxbExc) {
-            jaxbExc.printStackTrace();
-        } catch ( Exception e) {
-            e.getMessage();
+            rs.close();
+            stmt.close();
+
+        } catch (SQLException | ParserConfigurationException | TransformerException e) {
+            e.printStackTrace();
+        } finally {
+
         }
-        return new String();
+
+        return result;
     }
-
-     @Override
-    public <T> void xmlFileFromObject(T xmlDto) {
-         try {
-             Marshaller jaxbMarshaller = xmlCreater(xmlDto);
-             jaxbMarshaller.marshal(xmlDto, new File("/ausgabe.xml"));
-
-         } catch (JAXBException jaxbExc) {
-             jaxbExc.printStackTrace();
-         } catch ( Exception e) {
-             e.getMessage();
-         }
-    }
-
-    @Override
-    public <T> String xmlStringFromList(List<T> xmlDtoList) {
-        return null;
-    }
-
-    @Override
-    public <T> void xmlFileFromList(List<T> xmlDtoList){
-
-    }
-
-    private <T> Marshaller xmlCreater(T xmlDto) throws JAXBException {
-
-         JAXBContext jaxbContext = JAXBContext.newInstance(xmlDto.getClass());
-         Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
-         jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
-
-         return jaxbMarshaller;
-    }
-
-
 }

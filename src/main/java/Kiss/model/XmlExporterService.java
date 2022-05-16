@@ -4,21 +4,7 @@ import javax.xml.parsers.ParserConfigurationException;
 import java.util.List;
 
 public interface XmlExporterService {
-     /**
-      *
-      * @param xmlDto
-      * @return
-      * @param <T>
-      */
-    <T> String xmlStringFromObject(T xmlDto);
-    <T> String xmlStringFromList(List<T> xmlDtoList);
 
-     /**
-      *
-      * @param xmlDto
-      * @param <T>
-      */
-    <T> void xmlFileFromObject(T xmlDto);
+    String getXMLStringFromDatabase(String name, String password, String tableName);
 
-    <T> void xmlFileFromList(List<T> xmlDtoList);
 }
