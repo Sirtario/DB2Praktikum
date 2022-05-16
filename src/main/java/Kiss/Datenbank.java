@@ -75,6 +75,40 @@ public class Datenbank {
 
     }
 
+    /*
+        public void editEntry(String id, String table, String specificID, String column, String entryToChange){
+        String editString = "UPDATE "+table+"\n" +
+                "SET "+column+" = '"+entryToChange+"'\n" +
+                "WHERE "+specificID+" = "+id+";";
+    }
+
+    public void createEntryAbteilung(int id, String Abteilungsname) throws SQLException {
+        String createString = "INSERT INTO Abteilung(Abteilungsnummer, Abteilungsname)\n" +
+                "Values ("+id+",'"+Abteilungsname+"');";
+        Statement statement = connection.createStatement();
+        statement.execute(createString);
+    }
+
+    public void createEntryBeds(){
+
+    }
+
+    public void createEntryDiagnose(){
+
+    }
+
+    public void createEntryDoctor(){
+
+    }
+
+    public void createEntryKontaktdaten(){
+
+    }
+
+    public void createEntryLabor(){
+
+    }
+
     public void createEntryPatients(){
 
     }
