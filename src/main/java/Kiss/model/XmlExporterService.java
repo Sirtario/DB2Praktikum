@@ -1,10 +1,11 @@
 package Kiss.model;
 
 import javax.xml.parsers.ParserConfigurationException;
+import java.sql.Connection;
 import java.util.List;
 
 public interface XmlExporterService {
 
-    String getXMLStringFromDatabase(String name, String password, String tableName);
+    String getXMLStringFromDatabase(Connection con, String tableName);
 
 }

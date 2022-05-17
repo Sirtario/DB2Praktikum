@@ -8,14 +8,22 @@ public class DatabaseConnector {
 
     public static Connection ConnectToDB(String user, String pass) throws SQLException {
 
-            Connection con = DriverManager.getConnection(buildConnectionUrl(user, pass));
+            Connection con = DriverManager.getConnection(buildConnectionUrl(user, pass, "KIS"));
             return con;
     }
 
-    public static String buildConnectionUrl(String user, String pass) {
+    public static Connection ConnectToOtherDB(String user, String pass, String database) throws SQLException {
+
+        Connection con = DriverManager.getConnection(buildConnectionUrl(user, pass, database));
+        return con;
+    }
+
+
+
+    private static String buildConnectionUrl(String user, String pass, String database) {
         String connectionUrl =
                 "jdbc:sqlserver://68.183.223.224;"
-                        + "database=KIS;"
+                        + "database="+database+";"
                         + "user="+user+";"
                         + "password="+pass+";"
                         + "encrypt=true;"
@@ -24,6 +32,4 @@ public class DatabaseConnector {
 
         return connectionUrl;
     }
-
-
 }
