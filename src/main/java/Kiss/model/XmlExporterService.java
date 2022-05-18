@@ -6,6 +6,19 @@ import java.util.List;
 
 public interface XmlExporterService {
 
-    String getXMLStringFromDatabase(Connection con, String tableName);
+    /**
+     * Creates a string with an XML file as content. The content is the information of a database table.
+     * @param con Database connection
+     * @param tableName Database table
+     * @return
+     */
+    String createXMLStringFromDatabase(Connection con, String tableName);
+
+    /**
+     * Creates a file. The content is the information of a database table.
+     * @param con Database connection
+     * @param tableName Database table
+     */
+    void createXMLFileFromDatabase(Connection con, String tableName);
 
 }

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<Results>
+    <Row>
+        <ID>0</ID>
+        <NAME>Eins</NAME>
+        <BESCHREIBUNG>Das ist Test 1</BESCHREIBUNG>
+    </Row>
+    <Row>
+        <ID>1</ID>
+        <NAME>Zwei</NAME>
+        <BESCHREIBUNG>Das ist Test 2</BESCHREIBUNG>
+    </Row>
+    <Row>
+        <ID>2</ID>
+        <NAME>Drei</NAME>
+        <BESCHREIBUNG>Das ist Test 3</BESCHREIBUNG>
+    </Row>
+</Results>

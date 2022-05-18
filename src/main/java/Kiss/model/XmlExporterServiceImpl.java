@@ -12,19 +12,19 @@ import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
-import java.io.InputStream;
-import java.io.StringWriter;
+import java.io.*;
 import java.sql.*;
 
 class XmlExporterServiceImpl implements XmlExporterService{
 
 
     @Override
-    public String getXMLStringFromDatabase(Connection con, String tableName) {
+    public String createXMLStringFromDatabase(Connection con, String tableName) {
 
         String result = new String();
 
         try{
+            //Vorbereitung des DOM-Dokuments
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
             DocumentBuilder builder = factory.newDocumentBuilder();
             Document doc = builder.newDocument();
@@ -32,7 +32,7 @@ class XmlExporterServiceImpl implements XmlExporterService{
             doc.appendChild(results);
 
             // Statement mit Benennung der Tablle
-            String query = "USE SQL_Firma; SELECT * FROM " + tableName;
+            String query = "SELECT * FROM " + tableName + ";";
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery(query);
             ResultSetMetaData rsmd = rs.getMetaData();
@@ -72,10 +72,31 @@ class XmlExporterServiceImpl implements XmlExporterService{
 
         } catch (SQLException | ParserConfigurationException | TransformerException e) {
             e.printStackTrace();
-        } finally {
-
         }
 
         return result;
+    }
+
+    @Override
+    public void createXMLFileFromDatabase(Connection con, String tableName) {
+        File xmlFile = new File("output_"+tableName+".xml");
+
+        String xmlData = createXMLStringFromDatabase(con, tableName);
+
+        try(FileOutputStream fos = new FileOutputStream(xmlFile);
+            BufferedOutputStream bos = new BufferedOutputStream(fos)) {
+
+            //Konvertierung String zu Byte Array
+            byte[] bytes = xmlData.getBytes();
+
+            //Schreiben von Byte Array auf Datei
+            bos.write(bytes);
+
+            bos.close();
+            fos.close();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
