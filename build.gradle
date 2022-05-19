@@ -11,6 +11,7 @@ repositories {
 
 dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
+    testImplementation group: 'org.mockito', name: 'mockito-all', version: '1.9.5'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
     implementation 'com.microsoft.sqlserver:mssql-jdbc:10.2.0.jre11'
 }

@@ -1,5 +1,6 @@
 package Kiss.controller;
 
+import Kiss.model.DatabaseConnector;
 import javafx.fxml.FXML;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -40,19 +41,9 @@ public class LoginController {
     }
 
     private void ConnectToDB(String user, String pass) {
-        String connectionUrl =
-                "jdbc:sqlserver://68.183.223.224;"
-                        + "database=KIS;"
-                        + "user="+user+";"
-                        + "password="+pass+";"
-                        + "encrypt=true;"
-                        + "trustServerCertificate=true;"
-                        + "loginTimeout=30;";
-
 
         try{
-            Connection con = DriverManager.getConnection(connectionUrl);
-
+            DatabaseConnector.ConnectToDB(UserNameInput.getText(), PasswordInput.getText());
         } catch (SQLException e) {
             e.printStackTrace();
         }

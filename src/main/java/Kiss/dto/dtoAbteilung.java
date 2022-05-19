@@ -6,6 +6,9 @@ public class dtoAbteilung {
     private String abteilungslocation;
     private String abteilungsname;
 
+    public dtoAbteilung() {
+
+    }
     public dtoAbteilung(int abteilungsnummer, String abteilungsdescrip, String abteilungslocation, String abteilungsname) {
         this.abteilungsnummer = abteilungsnummer;
         this.abteilungsdescrip = abteilungsdescrip;
