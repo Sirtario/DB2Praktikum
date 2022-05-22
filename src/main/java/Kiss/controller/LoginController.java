@@ -5,6 +5,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
@@ -29,8 +31,9 @@ public class LoginController {
         //check if username and password are filled in
         if(!CredentialsAreFilledIn())
         {
-            //print error
-            //TODO: errorhandling
+            Alert alert = new Alert(Alert.AlertType.INFORMATION,"Please enter your Credentials", ButtonType.OK);
+            alert.setTitle("Credentials Required!");
+            alert.show();
             return;
         }
         //create database connection with the credentials
@@ -54,11 +57,11 @@ public class LoginController {
     }
 
     private boolean CredentialsAreFilledIn() {
-        if (UserNameInput.getText() == "")
+        if (UserNameInput.getText()==null||UserNameInput.getText().trim().isEmpty())
         {
             return false;
         }
-        if (PasswordInput.getText()==""){
+        if (PasswordInput.getText()==null|| PasswordInput.getText().trim().isEmpty()){
             return false;
         }
         return true;
@@ -70,7 +73,8 @@ public class LoginController {
             DatabaseConnector.ConnectToDB(UserNameInput.getText(), PasswordInput.getText());
             return true;
         } catch (SQLException e) {
-            e.printStackTrace();
+            Alert dbAlert = new Alert(Alert.AlertType.ERROR,e.getMessage(), ButtonType.OK);
+            dbAlert.show();
             return false;
         }
     }
