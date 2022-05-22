@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="214.0" prefWidth="238.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Kiss.controller.LoginController">
+<AnchorPane id="ViewBase" fx:id="ViewBase" prefHeight="214.0" prefWidth="238.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Kiss.controller.LoginController">
    <Label layoutX="97.0" layoutY="24.0" text="Login">
       <font>
          <Font name="System Bold" size="18.0" />
