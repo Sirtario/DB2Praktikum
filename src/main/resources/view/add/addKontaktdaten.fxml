@@ -1,14 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="view.AddKontaktdaten"
-            prefHeight="400.0" prefWidth="600.0">
 
+<AnchorPane prefHeight="199.0" prefWidth="164.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Kiss.controller.add.addKontaktdatenController">
+   <children>
+      <GridPane>
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="neue Kontaktdaten:" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Telefon" GridPane.rowIndex="1" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="E-Mail" GridPane.rowIndex="2" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Straße" GridPane.rowIndex="3" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="PLZ" GridPane.rowIndex="4" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Stadt" GridPane.rowIndex="5" />
+            <TextField fx:id="TelefonText" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="EMailText" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="StrasseText" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <TextField fx:id="PLZText" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <TextField fx:id="StadtText" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <Button mnemonicParsing="false" onAction="#onClickSaveEntry" text="Button" GridPane.halignment="CENTER" GridPane.rowIndex="6" />
+            <Button mnemonicParsing="false" onAction="#onClickCancel" text="Button" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="6" />
+         </children>
+      </GridPane>
+   </children>
 </AnchorPane>

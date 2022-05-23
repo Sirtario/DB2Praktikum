@@ -1,7 +1,7 @@
 package Kiss.controller;
 
 import Kiss.Datenbank;
-import Kiss.controller.add.addAbteilungController;
+import Kiss.controller.add.*;
 import Kiss.model.XmlExporterService;
 import Kiss.model.XmlExporterServiceImpl;
 import javafx.fxml.FXML;
@@ -10,8 +10,10 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import jdk.jshell.Diag;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 public class MainViewController {
     @FXML
@@ -40,24 +42,6 @@ public class MainViewController {
         this.db = db;
     }
 
-    /*
-    @FXML
-    private void onDeleteButtonClick(){
-        String table = tabPane.getSelectionModel().getSelectedItem().toString();
-        switch(table){
-            case "Abteilung": db.deleteEntry("Abteilung", "AbteilungsID", //TODO: Hier muss dann jeweils der Wert der ersten Zelle der ausgewählten Zeile rein(also halt die ID));
-            case "Bett": db.deleteEntry("Bett","BettID",);
-            case "Diagnose": db.deleteEntry("Diagnose","DiagnoseID",);
-            case "Doktor": db.deleteEntry("Doktor","DoktorID",);
-            case "Kontaktdaten": db.deleteEntry("Kontaktdaten","KontaktdatenID",);
-            case "Labor": db.deleteEntry("Labor","LaborID",);
-            case "Patient": db.deleteEntry("Patient","PatientID",);
-            case "Rechnung": db.deleteEntry("Rechnung","RechnungID",);
-            case "Raum": db.deleteEntry("Raum","RaumID",);
-        }
-    }
-*/
-
     public Datenbank getDb(){
         return db;
     }
@@ -67,28 +51,87 @@ public class MainViewController {
     }
 
     @FXML
+    private void onDeleteButtonClick() throws SQLException {
+        Tab tab = tabPane.getSelectionModel().getSelectedItem();
+        String querry = "";
+        if(tab.equals(Abteilung)){
+            querry = "DELETE FROM Abteilung WHERE AbteilungsID = "++";"; //TODO: ID des ausgewählten Elements
+        } else if(tab.equals(Bett)){
+            querry = "DELETE FROM Bett WHERE BettID = "++";"; //TODO: ID des ausgewählten Elements
+        } else if(tab.equals(Diagnose)){
+            querry = "DELETE FROM Diagnose WHERE DiagnoseID = "++";"; //TODO: ID des ausgewählten Elements
+        } else if(tab.equals(Doktor)){
+            querry = "DELETE FROM Doktor WHERE DoktorID = "++";"; //TODO: ID des ausgewählten Elements
+        } else if(tab.equals(Kontaktdaten)){
+            querry = "DELETE FROM Kontaktdaten WHERE KontkatdatenID = "++";"; //TODO: ID des ausgewählten Elements
+        } else if(tab.equals(Labor)){
+            querry = "DELETE FROM Labor WHERE LaborID = "++";"; //TODO: ID des ausgewählten Elements
+        } else if(tab.equals(Patient)){
+            querry = "DELETE FROM Patient WHERE PatientID = "++";"; //TODO: ID des ausgewählten Elements
+        } else if(tab.equals(Raum)){
+            querry = "DELETE FROM Raum WHERE RaumID = "++";"; //TODO: ID des ausgewählten Elements
+        } else if(tab.equals(Rechnung)){
+            querry = "DELETE FROM Rechnung WHERE RechnungsID = "++";"; //TODO: ID des ausgewählten Elements
+        }
+        db.runQuerry(querry);
+    }
+
+    @FXML
     private void onAddButtonClick(){
         Tab tab = tabPane.getSelectionModel().getSelectedItem();
         if(tab.equals(Abteilung)){
             FXMLLoader loader = new FXMLLoader(getClass().getResource("../../view/add/addAbteilung.fxml"));
             loader.setControllerFactory(addAbteilungController -> new addAbteilungController(this));
-
-            try {
-                AnchorPane rootElement = loader.load();
-
-                Stage stage = new Stage();
-                Scene scene = new Scene(rootElement);
-                popupStage = stage;
-
-                stage.setScene(scene);
-                stage.sizeToScene();
-                stage.showAndWait();
-
-            } catch(IOException e) {
-                e.printStackTrace();
-            };
+            openPopup(loader);
         } else if(tab.equals(Bett)){
-
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../../view/add/addBett.fxml"));
+            loader.setControllerFactory(addBettController -> new addBettController(this));
+            openPopup(loader);
+        } else if(tab.equals(Diagnose)){
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../../view/add/addDiagnose.fxml"));
+            loader.setControllerFactory(addDiagnoseController -> new addDiagnoseController(this));
+            openPopup(loader);
+        } else if(tab.equals(Doktor)){
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../../view/add/addDoktor.fxml"));
+            loader.setControllerFactory(addDoktorController -> new addDoktorController(this));
+            openPopup(loader);
+        } else if(tab.equals(Kontaktdaten)){
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../../view/add/addKontaktdaten.fxml"));
+            loader.setControllerFactory(addKontaktdatenController -> new addKontaktdatenController(this));
+            openPopup(loader);
+        } else if(tab.equals(Labor)){
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../../view/add/addLabor.fxml"));
+            loader.setControllerFactory(addLaborController -> new addLaborController(this));
+            openPopup(loader);
+        } else if(tab.equals(Patient)){
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../../view/add/addPatient.fxml"));
+            loader.setControllerFactory(addPatientController -> new addPatientController(this));
+            openPopup(loader);
+        } else if(tab.equals(Raum)){
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../../view/add/addRaum.fxml"));
+            loader.setControllerFactory(addRaumController -> new addRaumController(this));
+            openPopup(loader);
+        } else if(tab.equals(Rechnung)){
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../../view/add/addRechnung.fxml"));
+            loader.setControllerFactory(addRechnungController -> new addRechnungController(this));
+            openPopup(loader);
         }
+    }
+
+    private void openPopup(FXMLLoader loader){
+        try {
+            AnchorPane rootElement = loader.load();
+
+            Stage stage = new Stage();
+            Scene scene = new Scene(rootElement);
+            popupStage = stage;
+
+            stage.setScene(scene);
+            stage.sizeToScene();
+            stage.showAndWait();
+
+        } catch(IOException e) {
+            e.printStackTrace();
+        };
     }
 }
