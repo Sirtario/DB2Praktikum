@@ -16,8 +16,12 @@ public class Datenbank {
     }
 
     public void runQuerry(String querry) throws SQLException {
-        Statement statement = connection.createStatement();
-        statement.execute(querry);
+        try {
+            Statement statement = connection.createStatement();
+            statement.execute(querry);
+        } catch(SQLException exception){
+            exception.printStackTrace();
+        }
     }
 
     public void createEntry(String table,String[] keys, String[] values) throws SQLException {

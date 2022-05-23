@@ -30,12 +30,17 @@ public class MainViewController {
     private Tab Abteilung, Bett, Diagnose, Doktor, Kontaktdaten, Labor, Patient, Rechnung, Raum;
     @FXML
     private TableView AbteilungTable, BettTable, DiagnoseTable, DoktorTable, KontaktdatenTable, LaborTable, PatientTable, RechnungTable, RaumTable;
-    @FXML
+
     private Stage popupStage;
 
     private XmlExporterServiceImpl xmlExporterServiceImpl;
     private Datenbank db;
 
+    public void setDatenbank(Datenbank db){
+        this.db = db;
+    }
+
+    /*
     @FXML
     private void onDeleteButtonClick(){
         String table = tabPane.getSelectionModel().getSelectedItem().toString();
@@ -51,6 +56,7 @@ public class MainViewController {
             case "Raum": db.deleteEntry("Raum","RaumID",);
         }
     }
+*/
 
     public Datenbank getDb(){
         return db;
@@ -60,35 +66,29 @@ public class MainViewController {
         return popupStage;
     }
 
+    @FXML
     private void onAddButtonClick(){
-        String table = tabPane.getSelectionModel().getSelectedItem().toString();
-        switch(table){
-            case "Abteilung":
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/inspectItemWindow.fxml"));
-                loader.setControllerFactory(inspectItemController -> new addAbteilungController(this));
+        Tab tab = tabPane.getSelectionModel().getSelectedItem();
+        if(tab.equals(Abteilung)){
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../../view/add/addAbteilung.fxml"));
+            loader.setControllerFactory(addAbteilungController -> new addAbteilungController(this));
 
-                try {
-                    AnchorPane rootElement = loader.load();
+            try {
+                AnchorPane rootElement = loader.load();
 
-                    Stage stage = new Stage();
-                    Scene scene = new Scene(rootElement);
-                    popupStage = stage;
+                Stage stage = new Stage();
+                Scene scene = new Scene(rootElement);
+                popupStage = stage;
 
-                    stage.setScene(scene);
-                    stage.sizeToScene();
-                    stage.showAndWait();
+                stage.setScene(scene);
+                stage.sizeToScene();
+                stage.showAndWait();
 
-                } catch(IOException e) {
-                    e.printStackTrace();
-                };
-            case "Bett":;
-            case "Diagnose":;
-            case "Doktor":;
-            case "Kontaktdaten":;
-            case "Labor":;
-            case "Patient":;
-            case "Rechnung":;
-            case "Raum":;
+            } catch(IOException e) {
+                e.printStackTrace();
+            };
+        } else if(tab.equals(Bett)){
+
         }
     }
 }

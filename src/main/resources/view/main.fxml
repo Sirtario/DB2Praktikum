@@ -7,11 +7,11 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MainViewController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Kiss.controller.MainViewController">
    <children>
-      <TabPane fx:id="TabPane" layoutY="46.0" prefHeight="355.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0">
+      <TabPane fx:id="tabPane" layoutY="46.0" prefHeight="355.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0">
         <tabs>
-          <Tab fx:id="AbteilungTab" text="Abteilung">
+          <Tab fx:id="Abteilung" text="Abteilung">
                <content>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0">
                      <children>
@@ -20,7 +20,7 @@
                   </AnchorPane>
                </content>
             </Tab>
-          <Tab fx:id="BettTab" text="Bett">
+          <Tab fx:id="Bett" text="Bett">
               <content>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0">
                       <children>
@@ -29,7 +29,7 @@
                   </AnchorPane>
               </content>
             </Tab>
-            <Tab fx:id="DiagnoseTab" text="Diagnose">
+            <Tab fx:id="Diagnose" text="Diagnose">
                 <content>
                     <AnchorPane prefHeight="200.0" prefWidth="200.0">
                         <children>
@@ -38,7 +38,7 @@
                     </AnchorPane>
                 </content>
             </Tab>
-            <Tab fx:id="DoktorTab" text="Doktor">
+            <Tab fx:id="Doktor" text="Doktor">
                 <content>
                     <AnchorPane prefHeight="200.0" prefWidth="200.0">
                         <children>
@@ -47,7 +47,7 @@
                     </AnchorPane>
                 </content>
             </Tab>
-            <Tab fx:id="KontaktdatenTab" text="Kontaktdaten">
+            <Tab fx:id="Kontaktdaten" text="Kontaktdaten">
                 <content>
                     <AnchorPane prefHeight="200.0" prefWidth="200.0">
                         <children>
@@ -56,7 +56,7 @@
                     </AnchorPane>
                 </content>
             </Tab>
-            <Tab fx:id="LaborTab" text="Labor">
+            <Tab fx:id="Labor" text="Labor">
                 <content>
                     <AnchorPane prefHeight="200.0" prefWidth="200.0">
                         <children>
@@ -65,7 +65,7 @@
                     </AnchorPane>
                 </content>
             </Tab>
-            <Tab fx:id="PatientTab" text="Patient">
+            <Tab fx:id="Patient" text="Patient">
                 <content>
                     <AnchorPane prefHeight="200.0" prefWidth="200.0">
                         <children>
@@ -74,7 +74,7 @@
                     </AnchorPane>
                 </content>
             </Tab>
-            <Tab fx:id="RechnungTab" text="Rechnung">
+            <Tab fx:id="Rechnung" text="Rechnung">
                 <content>
                     <AnchorPane prefHeight="200.0" prefWidth="200.0">
                         <children>
@@ -83,7 +83,7 @@
                     </AnchorPane>
                 </content>
             </Tab>
-            <Tab fx:id="RaumTab" text="Raum">
+            <Tab fx:id="Raum" text="Raum">
                 <content>
                     <AnchorPane prefHeight="200.0" prefWidth="200.0">
                         <children>
@@ -98,7 +98,7 @@
          <children>
             <Button fx:id="exportButton" mnemonicParsing="false" text="export" />
             <Button fx:id="reloadButton" mnemonicParsing="false" text="reload" />
-            <Button fx:id="addButton" mnemonicParsing="false" text="add" />
+            <Button fx:id="addButton" mnemonicParsing="false" onAction="#onAddButtonClick" text="add" />
             <Button fx:id="editButton" mnemonicParsing="false" text="edit" />
             <Button fx:id="deleteButton" mnemonicParsing="false" text="delete" />
          </children>
