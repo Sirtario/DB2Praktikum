@@ -4,7 +4,13 @@ import Kiss.Datenbank;
 import Kiss.model.XmlExporterService;
 import Kiss.model.XmlExporterServiceImpl;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
+
+import java.io.IOException;
 
 public class MainViewController {
     @FXML
@@ -17,9 +23,16 @@ public class MainViewController {
     @FXML
     private TableView AbteilungTable, BettTable, DiagnoseTable, DoktorTable, KontaktdatenTable, LaborTable, PatientTable, RechnungTable, RaumTable;
 
+    private Stage popupStage;
+
     private XmlExporterServiceImpl xmlExporterServiceImpl;
     private Datenbank db;
 
+    public void setDatenbank(Datenbank db){
+        this.db = db;
+    }
+
+    /*
     @FXML
     private void onExportXML() {
         XmlExporterService xmlExporterService = new XmlExporterServiceImpl();
@@ -40,7 +53,40 @@ public class MainViewController {
             case "Patient": db.deleteEntry("Patient","PatientID",);
             case "Rechnung": db.deleteEntry("Rechnung","RechnungID",);
             case "Raum": db.deleteEntry("Raum","RaumID",);
+        }
+    }
+*/
 
+    public Datenbank getDb(){
+        return db;
+    }
+
+    public Stage getPopupStage(){
+        return popupStage;
+    }
+
+    @FXML
+    private void onAddButtonClick(){
+        Tab tab = tabPane.getSelectionModel().getSelectedItem();
+        if(tab.equals(Abteilung)){
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../../view/add/addAbteilung.fxml"));
+            loader.setControllerFactory(addAbteilungController -> new addAbteilungController(this));
+
+            try {
+                AnchorPane rootElement = loader.load();
+
+                Stage stage = new Stage();
+                Scene scene = new Scene(rootElement);
+                popupStage = stage;
+
+                stage.setScene(scene);
+                stage.sizeToScene();
+                stage.showAndWait();
+
+            } catch(IOException e) {
+                e.printStackTrace();
+            };
+        } else if(tab.equals(Bett)){
         }
     }
 }

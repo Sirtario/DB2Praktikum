@@ -11,6 +11,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 
+
 <?import javafx.scene.layout.BorderPane?>
 <BorderPane prefHeight="350.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
    <top>
@@ -46,7 +47,7 @@
                   </AnchorPane>
                </content>
             </Tab>
-          <Tab fx:id="BettTab" text="Bett">
+          <Tab fx:id="Bett" text="Bett">
               <content>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0">
                       <children>
@@ -55,7 +56,7 @@
                   </AnchorPane>
                </content>
             </Tab>
-            <Tab fx:id="DiagnoseTab" text="Diagnose">
+            <Tab fx:id="Diagnose" text="Diagnose">
                 <content>
                     <AnchorPane prefHeight="200.0" prefWidth="200.0">
                         <children>
@@ -64,7 +65,7 @@
                     </AnchorPane>
                 </content>
             </Tab>
-            <Tab fx:id="DoktorTab" text="Doktor">
+            <Tab fx:id="Doktor" text="Doktor">
                 <content>
                     <AnchorPane prefHeight="200.0" prefWidth="200.0">
                         <children>
@@ -73,7 +74,7 @@
                     </AnchorPane>
                 </content>
             </Tab>
-            <Tab fx:id="KontaktdatenTab" text="Kontaktdaten">
+            <Tab fx:id="Kontaktdaten" text="Kontaktdaten">
                 <content>
                     <AnchorPane prefHeight="200.0" prefWidth="200.0">
                         <children>
@@ -82,7 +83,7 @@
                     </AnchorPane>
                 </content>
             </Tab>
-            <Tab fx:id="LaborTab" text="Labor">
+            <Tab fx:id="Labor" text="Labor">
                 <content>
                     <AnchorPane prefHeight="200.0" prefWidth="200.0">
                         <children>
@@ -91,7 +92,7 @@
                     </AnchorPane>
                 </content>
             </Tab>
-            <Tab fx:id="PatientTab" text="Patient">
+            <Tab fx:id="Patient" text="Patient">
                 <content>
                     <AnchorPane prefHeight="200.0" prefWidth="200.0">
                         <children>
@@ -100,7 +101,7 @@
                     </AnchorPane>
                 </content>
             </Tab>
-            <Tab fx:id="RechnungTab" text="Rechnung">
+            <Tab fx:id="Rechnung" text="Rechnung">
                 <content>
                     <AnchorPane prefHeight="200.0" prefWidth="200.0">
                         <children>
@@ -109,7 +110,7 @@
                     </AnchorPane>
                 </content>
             </Tab>
-            <Tab fx:id="RaumTab" text="Raum">
+            <Tab fx:id="Raum" text="Raum">
                 <content>
                     <AnchorPane prefHeight="200.0" prefWidth="200.0">
                         <children>
@@ -129,4 +130,5 @@
       </ButtonBar>
    </bottom>
 </BorderPane>
+
 
