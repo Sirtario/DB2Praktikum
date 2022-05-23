@@ -15,7 +15,7 @@ import javax.xml.transform.stream.StreamResult;
 import java.io.*;
 import java.sql.*;
 
-class XmlExporterServiceImpl implements XmlExporterService{
+public class XmlExporterServiceImpl implements XmlExporterService{
 
 
     @Override
@@ -79,7 +79,9 @@ class XmlExporterServiceImpl implements XmlExporterService{
 
     @Override
     public void createXMLFileFromDatabase(Connection con, String tableName) {
-        File xmlFile = new File("output_"+tableName+".xml");
+        String currentPath = System.getProperty("user.dir");
+        String filepath = currentPath + tableName +".xml";
+        File xmlFile = new File(filepath);
 
         String xmlData = createXMLStringFromDatabase(con, tableName);
 
