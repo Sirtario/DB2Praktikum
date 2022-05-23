@@ -96,10 +96,10 @@
       </TabPane>
       <HBox layoutX="92.0" layoutY="-20.0" prefHeight="35.0" prefWidth="225.0" spacing="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
          <children>
-            <Button mnemonicParsing="false" text="reload" />
-            <Button mnemonicParsing="false" text="add" />
-            <Button mnemonicParsing="false" text="edit" />
-            <Button mnemonicParsing="false" text="delete" />
+            <Button fx:id="reloadButton" mnemonicParsing="false" text="reload" />
+            <Button fx:id="addButton" mnemonicParsing="false" text="add" />
+            <Button fx:id="editButton" mnemonicParsing="false" text="edit" />
+            <Button fx:id="deleteButton" mnemonicParsing="false" text="delete" />
          </children>
       </HBox>
    </children>
