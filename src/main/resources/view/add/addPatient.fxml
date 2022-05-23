@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane prefHeight="292.0" prefWidth="226.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Kiss.controller.add.addPatientController">
+   <children>
+      <GridPane layoutY="-1.0" prefHeight="305.0" prefWidth="233.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="158.0" minWidth="10.0" prefWidth="122.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="104.0" minWidth="10.0" prefWidth="99.0" />
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="neuer Patient:" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nachname" GridPane.rowIndex="1" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Vorname" GridPane.rowIndex="2" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Geburtstag" GridPane.rowIndex="3" />
+            <DatePicker fx:id="DatePicker" onAction="#onClickChooseBirth" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Versicherungsnummer" GridPane.rowIndex="4" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Behandlungsnummer" GridPane.rowIndex="5" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Stationär" GridPane.rowIndex="6" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Kontaktdaten" GridPane.rowIndex="7" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Doktor" GridPane.rowIndex="8" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Geschlecht" GridPane.rowIndex="10" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Labor" GridPane.rowIndex="9" />
+            <TextField fx:id="NachnameText" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="VornameText" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <ComboBox fx:id="StationaerBox" onAction="#onClickChooseStationaer" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+            <ComboBox fx:id="GeschlechtBox" onAction="#onClickChooseSex" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+            <ComboBox fx:id="LaborBox" onAction="#onClickChooseLabor" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+            <ComboBox fx:id="DoktorBox" onAction="#onClickChooseDoktor" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+            <ComboBox fx:id="KontaktdatenBox" onAction="#onClickChooseKontaktdaten" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+            <TextField fx:id="BehandlungsnummerText" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <TextField fx:id="VersicherungsnummerText" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <Button mnemonicParsing="false" onAction="#onClickSaveEntry" text="Button" GridPane.halignment="CENTER" GridPane.rowIndex="11" />
+            <Button mnemonicParsing="false" onAction="#onClickCancel" text="Button" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="11" />
+         </children>
+      </GridPane>
+   </children>
+</AnchorPane>
