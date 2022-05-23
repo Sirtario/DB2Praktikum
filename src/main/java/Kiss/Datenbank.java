@@ -37,6 +37,10 @@ public class Datenbank {
         statement.execute(createString);
     }
 
+    public Connection getConnection() {
+        return connection;
+    }
+
     /*
         public void editEntry(String id, String table, String specificID, String column, String entryToChange){
         String editString = "UPDATE "+table+"\n" +
