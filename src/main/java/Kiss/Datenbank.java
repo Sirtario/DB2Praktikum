@@ -15,6 +15,11 @@ public class Datenbank {
         statement.execute(deleteString);
     }
 
+    public void runQuerry(String querry) throws SQLException {
+        Statement statement = connection.createStatement();
+        statement.execute(querry);
+    }
+
     public void createEntry(String table,String[] keys, String[] values) throws SQLException {
         String createString = "INSERT INTO " +table+ " (";
         for(int i =0; i< keys.length; i++){

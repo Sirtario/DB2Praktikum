@@ -1,10 +1,17 @@
 package Kiss.controller;
 
 import Kiss.Datenbank;
+import Kiss.controller.add.addAbteilungController;
 import Kiss.model.XmlExporterService;
 import Kiss.model.XmlExporterServiceImpl;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
+
+import java.io.IOException;
 
 public class MainViewController {
     @FXML
@@ -23,6 +30,8 @@ public class MainViewController {
     private Tab Abteilung, Bett, Diagnose, Doktor, Kontaktdaten, Labor, Patient, Rechnung, Raum;
     @FXML
     private TableView AbteilungTable, BettTable, DiagnoseTable, DoktorTable, KontaktdatenTable, LaborTable, PatientTable, RechnungTable, RaumTable;
+    @FXML
+    private Stage popupStage;
 
     private XmlExporterServiceImpl xmlExporterServiceImpl;
     private Datenbank db;
@@ -40,7 +49,46 @@ public class MainViewController {
             case "Patient": db.deleteEntry("Patient","PatientID",);
             case "Rechnung": db.deleteEntry("Rechnung","RechnungID",);
             case "Raum": db.deleteEntry("Raum","RaumID",);
+        }
+    }
 
+    public Datenbank getDb(){
+        return db;
+    }
+
+    public Stage getPopupStage(){
+        return popupStage;
+    }
+
+    private void onAddButtonClick(){
+        String table = tabPane.getSelectionModel().getSelectedItem().toString();
+        switch(table){
+            case "Abteilung":
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/inspectItemWindow.fxml"));
+                loader.setControllerFactory(inspectItemController -> new addAbteilungController(this));
+
+                try {
+                    AnchorPane rootElement = loader.load();
+
+                    Stage stage = new Stage();
+                    Scene scene = new Scene(rootElement);
+                    popupStage = stage;
+
+                    stage.setScene(scene);
+                    stage.sizeToScene();
+                    stage.showAndWait();
+
+                } catch(IOException e) {
+                    e.printStackTrace();
+                };
+            case "Bett":;
+            case "Diagnose":;
+            case "Doktor":;
+            case "Kontaktdaten":;
+            case "Labor":;
+            case "Patient":;
+            case "Rechnung":;
+            case "Raum":;
         }
     }
 }
