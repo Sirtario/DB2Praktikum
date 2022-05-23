@@ -7,95 +7,96 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MainViewController">
    <children>
-      <TabPane layoutY="46.0" prefHeight="355.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0">
+      <TabPane fx:id="TabPane" layoutY="46.0" prefHeight="355.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0">
         <tabs>
-          <Tab text="Abteilung">
+          <Tab fx:id="AbteilungTab" text="Abteilung">
                <content>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0">
                      <children>
-                        <TableView prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                        <TableView fx:id="AbteilungTable" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                      </children>
                   </AnchorPane>
                </content>
             </Tab>
-          <Tab text="Bett">
+          <Tab fx:id="BettTab" text="Bett">
               <content>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0">
                       <children>
-                          <TableView prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                          <TableView fx:id="BettTable" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                       </children>
                   </AnchorPane>
               </content>
             </Tab>
-            <Tab text="Diagnose">
+            <Tab fx:id="DiagnoseTab" text="Diagnose">
                 <content>
                     <AnchorPane prefHeight="200.0" prefWidth="200.0">
                         <children>
-                            <TableView prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                            <TableView fx:id="DiagnoseTable" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                         </children>
                     </AnchorPane>
                 </content>
             </Tab>
-            <Tab text="Doktor">
+            <Tab fx:id="DoktorTab" text="Doktor">
                 <content>
                     <AnchorPane prefHeight="200.0" prefWidth="200.0">
                         <children>
-                            <TableView prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                            <TableView fx:id="DoktorTable" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                         </children>
                     </AnchorPane>
                 </content>
             </Tab>
-            <Tab text="Kontaktdaten">
+            <Tab fx:id="KontaktdatenTab" text="Kontaktdaten">
                 <content>
                     <AnchorPane prefHeight="200.0" prefWidth="200.0">
                         <children>
-                            <TableView prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                            <TableView fx:id="KontaktdatenTable" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                         </children>
                     </AnchorPane>
                 </content>
             </Tab>
-            <Tab text="Labor">
+            <Tab fx:id="LaborTab" text="Labor">
                 <content>
                     <AnchorPane prefHeight="200.0" prefWidth="200.0">
                         <children>
-                            <TableView prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                            <TableView fx:id="LaborTable" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                         </children>
                     </AnchorPane>
                 </content>
             </Tab>
-            <Tab text="Patient">
+            <Tab fx:id="PatientTab" text="Patient">
                 <content>
                     <AnchorPane prefHeight="200.0" prefWidth="200.0">
                         <children>
-                            <TableView prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                            <TableView fx:id="PatientTable" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                         </children>
                     </AnchorPane>
                 </content>
             </Tab>
-            <Tab text="Rechnung">
+            <Tab fx:id="RechnungTab" text="Rechnung">
                 <content>
                     <AnchorPane prefHeight="200.0" prefWidth="200.0">
                         <children>
-                            <TableView prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                            <TableView fx:id="RechnungTable" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                         </children>
                     </AnchorPane>
                 </content>
             </Tab>
-            <Tab text="Raum">
+            <Tab fx:id="RaumTab" text="Raum">
                 <content>
                     <AnchorPane prefHeight="200.0" prefWidth="200.0">
                         <children>
-                            <TableView prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                            <TableView fx:id="RaumTable" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                         </children>
                     </AnchorPane>
                 </content>
             </Tab>
         </tabs>
       </TabPane>
-      <HBox layoutX="92.0" layoutY="-20.0" prefHeight="35.0" prefWidth="225.0" spacing="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+      <HBox layoutX="92.0" layoutY="-20.0" prefHeight="35.0" prefWidth="270.0" spacing="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
          <children>
+            <Button fx:id="exportButton" mnemonicParsing="false" text="export" />
             <Button fx:id="reloadButton" mnemonicParsing="false" text="reload" />
             <Button fx:id="addButton" mnemonicParsing="false" text="add" />
             <Button fx:id="editButton" mnemonicParsing="false" text="edit" />

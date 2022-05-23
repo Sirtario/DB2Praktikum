@@ -15,7 +15,7 @@ import javax.xml.transform.stream.StreamResult;
 import java.io.*;
 import java.sql.*;
 
-class XmlExporterServiceImpl implements XmlExporterService{
+public class XmlExporterServiceImpl implements XmlExporterService{
 
 
     @Override
