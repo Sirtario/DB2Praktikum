@@ -1,18 +1,13 @@
 package Kiss;
 
 import java.sql.*;
+import java.util.ArrayList;
 
 public class Datenbank {
     Connection connection;
 
     public Datenbank(Connection connection){
         this.connection = connection;
-    }
-
-    public void deleteEntry(String table, String tableID, String EntryID) throws SQLException {
-        String deleteString = "DELETE FROM " +table+ " WHERE " +tableID+ "='" +EntryID+ "';";
-        Statement statement = connection.createStatement();
-        statement.execute(deleteString);
     }
 
     public void runQuerry(String querry) throws SQLException {
@@ -24,26 +19,14 @@ public class Datenbank {
         }
     }
 
-    public void createEntry(String table,String[] keys, String[] values) throws SQLException {
-        String createString = "INSERT INTO " +table+ " (";
-        for(int i =0; i< keys.length; i++){
-            if(i< keys.length-1) {
-                createString = createString + keys[i] + ", ";
-            } else {
-                createString = createString + keys[i] + ") ";
-            }
-        }
-        createString = createString + "VALUES (";
-        for(int i =0; i< values.length; i++){
-            if(i< values.length-1) {
-                createString = createString+"'" + values[i] + "', ";
-            } else {
-                createString = createString +"'"+ values[i] + "');";
-            }
-        }
-        //System.out.println(createString);
+    public ArrayList<String> returnForeigKeys(String querry) throws SQLException {
+        ArrayList<String> foreignKeys = new ArrayList<String>();
         Statement statement = connection.createStatement();
-        statement.execute(createString);
+        ResultSet rs = statement.executeQuery(querry);
+        while(rs.next()){
+            foreignKeys.add(rs.getString("RaumID"));
+        }
+        return foreignKeys;
     }
 
     /*
