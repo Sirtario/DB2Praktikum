@@ -32,7 +32,7 @@ public class addBettController {
     }
 
     public void populateRaumBox() throws SQLException {
-        ArrayList<String> Raum = mainViewController.getDb().returnForeigKeys("SELECT RaumID FROM Raum;");
+        ArrayList<String> Raum = mainViewController.getDb().returnForeigKeys("SELECT RaumID FROM Raum;", "RaumID");
         for(String s : Raum){
             RaumBox.getItems().add(s);
         }

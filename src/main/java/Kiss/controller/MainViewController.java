@@ -68,8 +68,10 @@ public class MainViewController {
         return popupStage;
     }
 
+
     @FXML
     private void onDeleteButtonClick() throws SQLException {
+        /*
         Tab tab = tabPane.getSelectionModel().getSelectedItem();
         String querry = "";
         if(tab.equals(Abteilung)){
@@ -92,6 +94,8 @@ public class MainViewController {
             querry = "DELETE FROM Rechnung WHERE RechnungsID = "++";"; //TODO: ID des ausgewählten Elements
         }
         db.runQuerry(querry);
+
+     */
     }
 
     @FXML
@@ -141,19 +145,47 @@ public class MainViewController {
             openPopup(loader);
         } else if(tab.equals(Labor)){
             FXMLLoader loader = new FXMLLoader(getClass().getResource("../../view/add/addLabor.fxml"));
-            loader.setControllerFactory(addLaborController -> new addLaborController(this));
+            loader.setControllerFactory(addLaborController -> {
+                try {
+                    return new addLaborController(this);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+                return null;
+            });
             openPopup(loader);
         } else if(tab.equals(Patient)){
             FXMLLoader loader = new FXMLLoader(getClass().getResource("../../view/add/addPatient.fxml"));
-            loader.setControllerFactory(addPatientController -> new addPatientController(this));
+            loader.setControllerFactory(addPatientController -> {
+                try {
+                    return new addPatientController(this);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+                return null;
+            });
             openPopup(loader);
         } else if(tab.equals(Raum)){
             FXMLLoader loader = new FXMLLoader(getClass().getResource("../../view/add/addRaum.fxml"));
-            loader.setControllerFactory(addRaumController -> new addRaumController(this));
+            loader.setControllerFactory(addRaumController -> {
+                try {
+                    return new addRaumController(this);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+                return null;
+            });
             openPopup(loader);
         } else if(tab.equals(Rechnung)){
             FXMLLoader loader = new FXMLLoader(getClass().getResource("../../view/add/addRechnung.fxml"));
-            loader.setControllerFactory(addRechnungController -> new addRechnungController(this));
+            loader.setControllerFactory(addRechnungController -> {
+                try {
+                    return new addRechnungController(this);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+                return null;
+            });
             openPopup(loader);
         }
     }
@@ -173,5 +205,20 @@ public class MainViewController {
         } catch(IOException e) {
             e.printStackTrace();
         };
+    }
+
+    @FXML
+    private void onReloadButtonClick(){
+
+    }
+
+    @FXML
+    private void onEditButtonClick(){
+
+    }
+
+    @FXML
+    private void onExportButtonClick(){
+
     }
 }

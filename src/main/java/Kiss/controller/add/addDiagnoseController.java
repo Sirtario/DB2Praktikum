@@ -22,15 +22,20 @@ public class addDiagnoseController {
     }
 
     public void populatePatientBox() throws SQLException {
-        ArrayList<String> Patient = mainViewController.getDb().returnForeigKeys("SELECT RaumID FROM Raum;");
+        ArrayList<String> Patient = mainViewController.getDb().returnForeigKeys("SELECT Nachname FROM Patient;", "Nachname");
         for(String s : Patient){
             PatientBox.getItems().add(s);
         }
     }
 
+    public String getPatientID(String Patient) throws SQLException {
+        return mainViewController.getDb().returnID("SELECT PatientID FROM Patient WHERE Nachname='"+Patient+"'","PatientID");
+    }
+
     @FXML
     private void onClickSaveEntry() throws SQLException {
-        String querry = "INSERT INTO Diagnose (PatientenID, DiagnoseBezeichnung) VALUES ("+PatientBox.getSelectionModel().getSelectedItem()+", '"+BezeichnungText+"');";
+        String querry = "INSERT INTO Diagnose (PatientenID, DiagnoseBezeichnung) VALUES ("+
+                getPatientID(PatientBox.getSelectionModel().getSelectedItem())+", '"+BezeichnungText.getText()+"');";
         mainViewController.getDb().runQuerry(querry);
         mainViewController.getPopupStage().close();
     }

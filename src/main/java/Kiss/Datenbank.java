@@ -19,16 +19,21 @@ public class Datenbank {
         }
     }
 
-    public ArrayList<String> returnForeigKeys(String querry) throws SQLException {
+    public ArrayList<String> returnForeigKeys(String querry, String column) throws SQLException {
         ArrayList<String> foreignKeys = new ArrayList<String>();
         Statement statement = connection.createStatement();
         ResultSet rs = statement.executeQuery(querry);
         while(rs.next()){
-            foreignKeys.add(rs.getString("RaumID"));
+            foreignKeys.add(rs.getString(column));
         }
         return foreignKeys;
     }
 
+    public String returnID(String querry, String column) throws SQLException {
+        Statement statement = connection.createStatement();
+        ResultSet rs = statement.executeQuery(querry);
+        return rs.getString(column);
+    }
     public Connection getConnection() {
         return connection;
     }
@@ -64,6 +69,7 @@ public class Datenbank {
     }
 
     public void createEntryLabor(){
+
 
     }
 

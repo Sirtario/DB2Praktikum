@@ -28,7 +28,7 @@ public class addDoktorController {
     }
 
     public void populateKontaktdatenBox() throws SQLException {
-        ArrayList<String> Kontaktdaten = mainViewController.getDb().returnForeigKeys("SELECT RaumID FROM Raum;");
+        ArrayList<String> Kontaktdaten = mainViewController.getDb().returnForeigKeys("SELECT KontaktdatenID FROM Kontaktdaten;", "KontaktdatenID");
         for(String s : Kontaktdaten){
             KontaktdatenBox.getItems().add(s);
         }
@@ -41,9 +41,9 @@ public class addDoktorController {
     @FXML
     private void onClickSaveEntry() throws SQLException {
         String querry = "INSERT INTO Doktor (Vorname, Nachname, Geschlecht, Geburtstag, Fachrichtung, KontaktdatenID)" +
-                " VALUES ('"+VornameText+"', '"+NachnameText+"', '"+GeschlechtBox.getSelectionModel().getSelectedItem()+
+                " VALUES ('"+VornameText.getText()+"', '"+NachnameText.getText()+"', '"+GeschlechtBox.getSelectionModel().getSelectedItem()+
                 "', '" +GeburtstagPicker.getValue().format(DateTimeFormatter.ofPattern("dd.MM.yyyy"))+
-                "', '" +FachrichtungText+", "+KontaktdatenBox.getSelectionModel().getSelectedItem()+");";
+                "', '" +FachrichtungText.getText()+", "+KontaktdatenBox.getSelectionModel().getSelectedItem()+");";
         mainViewController.getDb().runQuerry(querry);
         mainViewController.getPopupStage().close();
     }
