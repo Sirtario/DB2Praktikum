@@ -10,7 +10,6 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Text?>
 
-
 <AnchorPane prefHeight="292.0" prefWidth="226.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Kiss.controller.add.addPatientController">
    <children>
       <GridPane layoutY="-1.0" prefHeight="305.0" prefWidth="233.0">
@@ -37,7 +36,7 @@
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nachname" GridPane.rowIndex="1" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Vorname" GridPane.rowIndex="2" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Geburtstag" GridPane.rowIndex="3" />
-            <DatePicker fx:id="DatePicker" onAction="#onClickChooseBirth" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <DatePicker fx:id="DatePicker" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Versicherungsnummer" GridPane.rowIndex="4" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Behandlungsnummer" GridPane.rowIndex="5" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Stationär" GridPane.rowIndex="6" />
@@ -47,11 +46,11 @@
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Labor" GridPane.rowIndex="9" />
             <TextField fx:id="NachnameText" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <TextField fx:id="VornameText" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <ComboBox fx:id="StationaerBox" onAction="#onClickChooseStationaer" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-            <ComboBox fx:id="GeschlechtBox" onAction="#onClickChooseSex" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="10" />
-            <ComboBox fx:id="LaborBox" onAction="#onClickChooseLabor" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="9" />
-            <ComboBox fx:id="DoktorBox" onAction="#onClickChooseDoktor" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
-            <ComboBox fx:id="KontaktdatenBox" onAction="#onClickChooseKontaktdaten" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+            <ComboBox fx:id="StationaerBox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+            <ComboBox fx:id="GeschlechtBox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+            <ComboBox fx:id="LaborBox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+            <ComboBox fx:id="DoktorBox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+            <ComboBox fx:id="KontaktdatenBox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
             <TextField fx:id="BehandlungsnummerText" GridPane.columnIndex="1" GridPane.rowIndex="5" />
             <TextField fx:id="VersicherungsnummerText" GridPane.columnIndex="1" GridPane.rowIndex="4" />
             <Button mnemonicParsing="false" onAction="#onClickSaveEntry" text="Button" GridPane.halignment="CENTER" GridPane.rowIndex="11" />

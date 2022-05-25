@@ -20,11 +20,18 @@ public class addDoktorController {
     @FXML
     private DatePicker GeburtstagPicker;
 
-    public addDoktorController(MainViewController mainViewController) throws SQLException {
+    public addDoktorController(MainViewController mainViewController) {
         this.mainViewController =  mainViewController;
-        populateGeschlechtBox();
-        populateKontaktdatenBox();
-        GeburtstagPicker = new DatePicker();
+    }
+
+    @FXML
+    public void initialize(){
+        try {
+            populateGeschlechtBox();
+            populateKontaktdatenBox();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     public void populateKontaktdatenBox() throws SQLException {

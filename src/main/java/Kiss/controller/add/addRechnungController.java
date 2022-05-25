@@ -18,10 +18,18 @@ public class addRechnungController {
 
     public addRechnungController(MainViewController mainViewController) throws SQLException {
         this.mainViewController =  mainViewController;
-        populatePatientenBox();
-        populateDoktorBox();
-        populateLaborBox();
-        populateRaumBox();
+    }
+
+    @FXML
+    public void initialize(){
+        try {
+            populatePatientenBox();
+            populateDoktorBox();
+            populateLaborBox();
+            populateRaumBox();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     public void populatePatientenBox() throws SQLException {

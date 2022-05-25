@@ -22,8 +22,15 @@ public class addLaborController {
 
     public addLaborController(MainViewController mainViewController) throws SQLException {
         this.mainViewController =  mainViewController;
-        datePicker = new DatePicker();
-        populateDoktorBox();
+    }
+
+    @FXML
+    public void initialize(){
+        try {
+            populateDoktorBox();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     public void populateDoktorBox() throws SQLException {

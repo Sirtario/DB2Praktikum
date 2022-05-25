@@ -9,7 +9,6 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Text?>
 
-
 <AnchorPane prefHeight="110.0" prefWidth="150.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Kiss.controller.add.addDiagnoseController">
    <children>
       <GridPane>
@@ -29,7 +28,7 @@
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Patient" GridPane.rowIndex="2" />
             <Button mnemonicParsing="false" onAction="#onClickSaveEntry" text="save" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
             <Button mnemonicParsing="false" onAction="#onClickCancel" text="cancel" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
-            <ComboBox fx:id="PatientBox" onAction="#onClickChoosePatient" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <ComboBox fx:id="PatientBox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <TextField fx:id="BezeichnungText" GridPane.columnIndex="1" GridPane.rowIndex="1" />
          </children>
       </GridPane>

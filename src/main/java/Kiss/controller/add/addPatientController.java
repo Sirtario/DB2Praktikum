@@ -22,12 +22,19 @@ public class addPatientController {
 
     public addPatientController(MainViewController mainViewController) throws SQLException {
         this.mainViewController =  mainViewController;
-        datePicker = new DatePicker();
-        populateGeschlechtBox();
-        populateStationaerBox();
-        populateKontaktdatenBox();
-        populateDoktorBox();
-        populateLaborBox();
+    }
+
+    @FXML
+    public void initialize(){
+        try {
+            populateGeschlechtBox();
+            populateStationaerBox();
+            populateKontaktdatenBox();
+            populateDoktorBox();
+            populateLaborBox();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     public void populateGeschlechtBox() {

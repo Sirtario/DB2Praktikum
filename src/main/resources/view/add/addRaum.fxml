@@ -9,7 +9,6 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Text?>
 
-
 <AnchorPane prefHeight="122.0" prefWidth="116.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Kiss.controller.add.addRaumController">
    <children>
       <GridPane>
@@ -27,8 +26,8 @@
          <children>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="neuer Raum:" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Typ" GridPane.rowIndex="1" />
-            <ComboBox fx:id="StatusBox" onAction="#onClickChooseStatus" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <ComboBox fx:id="AbteilungBox" onAction="#onClickChooseAbteilung" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <ComboBox fx:id="StatusBox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <ComboBox fx:id="AbteilungBox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Status" GridPane.rowIndex="2" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Abteilung" GridPane.rowIndex="3" />
             <Button mnemonicParsing="false" onAction="#onClickSaveEntry" text="save" GridPane.halignment="CENTER" GridPane.rowIndex="4" />

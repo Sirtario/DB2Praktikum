@@ -16,9 +16,17 @@ public class addDiagnoseController {
     @FXML
     private TextField BezeichnungText;
 
-    public addDiagnoseController(MainViewController mainViewController) throws SQLException {
+    public addDiagnoseController(MainViewController mainViewController) {
         this.mainViewController =  mainViewController;
-        populatePatientBox();
+    }
+
+    @FXML
+    public void initialize(){
+        try {
+            populatePatientBox();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     public void populatePatientBox() throws SQLException {

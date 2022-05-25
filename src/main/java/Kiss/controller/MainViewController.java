@@ -108,36 +108,15 @@ public class MainViewController {
         } else if(tab.equals(Bett)){
 
             FXMLLoader loader = new FXMLLoader(getClass().getResource("../../view/add/addBett.fxml"));
-            loader.setControllerFactory(addBettController -> {
-                try {
-                    return new addBettController(this);
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-                return null;
-            });
+            loader.setControllerFactory(addBettController -> new addBettController(this));
             openPopup(loader);
         } else if(tab.equals(Diagnose)){
             FXMLLoader loader = new FXMLLoader(getClass().getResource("../../view/add/addDiagnose.fxml"));
-            loader.setControllerFactory(addDiagnoseController -> {
-                try {
-                    return new addDiagnoseController(this);
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-                return null;
-            });
+            loader.setControllerFactory(addDiagnoseController -> new addDiagnoseController(this));
             openPopup(loader);
         } else if(tab.equals(Doktor)){
             FXMLLoader loader = new FXMLLoader(getClass().getResource("../../view/add/addDoktor.fxml"));
-            loader.setControllerFactory(addDoktorController -> {
-                try {
-                    return new addDoktorController(this);
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-                return null;
-            });
+            loader.setControllerFactory(addDoktorController -> new addDoktorController(this));
             openPopup(loader);
         } else if(tab.equals(Kontaktdaten)){
             FXMLLoader loader = new FXMLLoader(getClass().getResource("../../view/add/addKontaktdaten.fxml"));

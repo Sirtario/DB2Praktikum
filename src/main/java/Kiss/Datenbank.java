@@ -1,5 +1,7 @@
 package Kiss;
 
+import javafx.collections.ObservableList;
+
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -26,12 +28,16 @@ public class Datenbank {
         while(rs.next()){
             foreignKeys.add(rs.getString(column));
         }
+        if(foreignKeys.isEmpty()){
+            foreignKeys.add("Hier ist nichts!");
+        }
         return foreignKeys;
     }
 
     public String returnID(String querry, String column) throws SQLException {
         Statement statement = connection.createStatement();
         ResultSet rs = statement.executeQuery(querry);
+        rs.next();
         return rs.getString(column);
     }
     public Connection getConnection() {

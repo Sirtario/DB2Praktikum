@@ -9,7 +9,6 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Text?>
 
-
 <AnchorPane prefHeight="165.0" prefWidth="135.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Kiss.controller.add.addRechnungController">
    <children>
       <GridPane>
@@ -35,10 +34,10 @@
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Patient" GridPane.rowIndex="5" />
             <Button mnemonicParsing="false" onAction="#onClickSaveEntry" text="save" GridPane.halignment="CENTER" GridPane.rowIndex="6" />
             <Button mnemonicParsing="false" onAction="#onClickCancel" text="cancel" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="6" />
-            <ComboBox fx:id="PatientBox" onAction="#onClickChoosePatient" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-            <ComboBox fx:id="DoktorBox" onAction="#onClickChooseDoktor" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-            <ComboBox fx:id="RaumBox" onAction="#onClickChooseRaum" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <ComboBox fx:id="LaborBox" onAction="#onClickChooseLabor" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <ComboBox fx:id="PatientBox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <ComboBox fx:id="DoktorBox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <ComboBox fx:id="RaumBox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <ComboBox fx:id="LaborBox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <TextField fx:id="AnzTageBox" GridPane.columnIndex="1" GridPane.rowIndex="1" />
          </children>
       </GridPane>
