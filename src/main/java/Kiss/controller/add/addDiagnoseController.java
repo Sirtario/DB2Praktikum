@@ -37,7 +37,7 @@ public class addDiagnoseController {
     }
 
     public String getPatientID(String Patient) throws SQLException {
-        return mainViewController.getDb().returnID("SELECT PatientID FROM Patient WHERE Nachname='"+Patient+"'","PatientID");
+        return mainViewController.getDb().returnID("SELECT PatientID FROM Patient WHERE Nachname='"+Patient+"';","PatientID");
     }
 
     @FXML

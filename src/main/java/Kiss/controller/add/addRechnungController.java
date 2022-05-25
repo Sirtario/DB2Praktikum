@@ -40,7 +40,7 @@ public class addRechnungController {
     }
 
     public String getPatientID(String Patient) throws SQLException {
-        return mainViewController.getDb().returnID("SELECT PatientenID FROM Patient WHERE Nachname='"+Patient+"'","PatientenID");
+        return mainViewController.getDb().returnID("SELECT PatientenID FROM Patient WHERE Nachname='"+Patient+"';","PatientenID");
     }
 
     public void populateDoktorBox() throws SQLException {
@@ -51,7 +51,7 @@ public class addRechnungController {
     }
 
     public String getDoktorID(String Doktor) throws SQLException {
-        return mainViewController.getDb().returnID("SELECT DoktorID FROM Doktor WHERE Nachname='"+Doktor+"'","DoktorID");
+        return mainViewController.getDb().returnID("SELECT DoktorID FROM Doktor WHERE Nachname='"+Doktor+"';","DoktorID");
     }
 
     public void populateLaborBox() throws SQLException {

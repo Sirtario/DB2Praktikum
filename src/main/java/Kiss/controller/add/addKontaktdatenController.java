@@ -18,8 +18,8 @@ public class addKontaktdatenController {
 
     @FXML
     private void onClickSaveEntry() throws SQLException {
-        String querry = "INSERT INTO Kontaktdaten (Telefon, EMail, Straße, PLZ, Stadt) VALUES ("+
-                TelefonText.getText()+",'"+EMailText.getText()+"','"+StrasseText.getText()+"','"+PLZText.getText()+"', '"+StadtText.getText()+"');";
+        String querry = "INSERT INTO Kontaktdaten (Telefon, EMail, Straße, PLZ, Stadt) VALUES ('"+
+                TelefonText.getText()+"','"+EMailText.getText()+"','"+StrasseText.getText()+"','"+PLZText.getText()+"', '"+StadtText.getText()+"');";
         mainViewController.getDb().runQuerry(querry);
         mainViewController.getPopupStage().close();
     }
