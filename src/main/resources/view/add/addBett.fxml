@@ -25,7 +25,7 @@
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Raum" GridPane.halignment="LEFT" GridPane.rowIndex="1" />
             <Button mnemonicParsing="false" onAction="#onClickSaveEntry" text="save" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
             <Button mnemonicParsing="false" onAction="#onClickCancel" text="cancel" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
-            <ComboBox fx:id="RaumBox" onAction="#onClickChooseRoom" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <ComboBox fx:id="RaumBox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
          </children>
       </GridPane>
    </children>

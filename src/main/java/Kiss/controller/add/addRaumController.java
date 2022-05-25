@@ -18,8 +18,16 @@ public class addRaumController {
 
     public addRaumController(MainViewController mainViewController) throws SQLException {
         this.mainViewController =  mainViewController;
-        populateStationaerBox();
-        populateAbteilungBox();
+    }
+
+    @FXML
+    public void initialize(){
+        try {
+            populateStationaerBox();
+            populateAbteilungBox();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     public void populateStationaerBox() {
@@ -34,12 +42,12 @@ public class addRaumController {
     }
 
     public String getAbteilungID(String Abteilung) throws SQLException {
-        return mainViewController.getDb().returnID("SELECT AbteilungsID FROM Abteilung WHERE AbteilungsName='"+Abteilung+"'","AbteilungsID");
+        return mainViewController.getDb().returnID("SELECT AbteilungsID FROM Abteilung WHERE AbteilungsName='"+Abteilung+"';","AbteilungsID");
     }
 
     @FXML
     private void onClickSaveEntry() throws SQLException {
-        String querry = "INSERT INTO Abteilung (RaumTyp, Status, AbteilungsID) VALUES ('"+
+        String querry = "INSERT INTO Raum (RaumTyp, Status, AbteilungsID) VALUES ('"+
                 RaumText.getText()+"',"+StatusBox.getSelectionModel().getSelectedItem()+","+
                 getAbteilungID(AbteilungBox.getSelectionModel().getSelectedItem())+");";
         mainViewController.getDb().runQuerry(querry);

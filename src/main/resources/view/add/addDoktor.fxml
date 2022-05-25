@@ -37,12 +37,12 @@
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Geburtstag" GridPane.rowIndex="3" />
             <Button mnemonicParsing="false" onAction="#onClickSaveEntry" text="Button" GridPane.halignment="CENTER" GridPane.rowIndex="7" />
             <Button mnemonicParsing="false" onAction="#onClickCancel" text="Button" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="7" />
-            <ComboBox fx:id="KontaktdatenBox" onAction="#onClickChooseKontaktdaten" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-            <ComboBox fx:id="GeschlechtBox" onAction="#onClickChooseSex" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <ComboBox fx:id="KontaktdatenBox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+            <ComboBox fx:id="GeschlechtBox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
             <TextField fx:id="FachrichtungText" GridPane.columnIndex="1" GridPane.rowIndex="4" />
             <TextField fx:id="VornameText" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <TextField fx:id="NachnameText" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <DatePicker fx:id="GeburtstagBox" onAction="#onClickChooseDate" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <DatePicker fx:id="GeburtstagBox" GridPane.columnIndex="1" GridPane.rowIndex="3" />
          </children>
       </GridPane>
    </children>
