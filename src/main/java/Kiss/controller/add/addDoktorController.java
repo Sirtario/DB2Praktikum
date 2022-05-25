@@ -50,7 +50,7 @@ public class addDoktorController {
         String querry = "INSERT INTO Doktor (Vorname, Nachname, Geschlecht, Geburtstag, Fachrichtung, KontaktdatenID)" +
                 " VALUES ('"+VornameText.getText()+"', '"+NachnameText.getText()+"', '"+GeschlechtBox.getSelectionModel().getSelectedItem()+
                 "', '" +GeburtstagPicker.getValue().format(DateTimeFormatter.ofPattern("dd.MM.yyyy"))+
-                "', '" +FachrichtungText.getText()+", "+KontaktdatenBox.getSelectionModel().getSelectedItem()+");";
+                "', '" +FachrichtungText.getText()+"', "+KontaktdatenBox.getSelectionModel().getSelectedItem()+");";
         mainViewController.getDb().runQuerry(querry);
         mainViewController.getPopupStage().close();
     }
