@@ -12,12 +12,14 @@ public class Datenbank {
         this.connection = connection;
     }
 
-    public void runQuerry(String querry) throws SQLException {
+    public ResultSet runQuerry(String querry) throws SQLException {
         try {
             Statement statement = connection.createStatement();
             statement.execute(querry);
+            return statement.getResultSet();
         } catch(SQLException exception){
             exception.printStackTrace();
+            return null;
         }
     }
 

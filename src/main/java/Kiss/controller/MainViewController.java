@@ -2,17 +2,21 @@ package Kiss.controller;
 
 import Kiss.Datenbank;
 import Kiss.controller.add.*;
-import Kiss.model.XmlExporterService;
 import Kiss.model.XmlExporterServiceImpl;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import jdk.jshell.Diag;
+import javafx.util.Callback;
 
 import java.io.IOException;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class MainViewController {
@@ -30,6 +34,146 @@ public class MainViewController {
 
     private XmlExporterServiceImpl xmlExporterServiceImpl;
     private Datenbank db;
+    @FXML
+    public void initialize(){
+        Abteilung.setOnSelectionChanged(selectionChanged->
+        {
+            ClearTable(AbteilungTable);
+            UpdateTableView("Abteilung");
+        });
+
+        Bett.setOnSelectionChanged(selectionChanged->
+        {
+            ClearTable(BettTable);
+            ResultSet resul;
+            try {
+                resul=db.runQuerry("Select * from Bett;");
+                GenerateTableHead(BettTable,resul);
+                FillTableWithContent(BettTable,resul);
+            } catch (SQLException e)
+            {
+                Alert error = new Alert(Alert.AlertType.ERROR,e.getMessage(),ButtonType.OK);
+                error.showAndWait();
+            }
+        });
+
+        Diagnose.setOnSelectionChanged(selectionChanged->
+        {
+            ClearTable(DiagnoseTable);
+            ResultSet resul;
+            try {
+                resul=db.runQuerry("Select * from Diagnose;");
+                GenerateTableHead(DiagnoseTable,resul);
+                FillTableWithContent(DiagnoseTable,resul);
+            } catch (SQLException e)
+            {
+                Alert error = new Alert(Alert.AlertType.ERROR,e.getMessage(),ButtonType.OK);
+                error.showAndWait();
+            }
+        });
+
+        Doktor.setOnSelectionChanged(selectionChanged->
+        {
+            ClearTable(DoktorTable);
+            ResultSet resul;
+            try {
+                resul=db.runQuerry("Select * from Doktor;");
+                GenerateTableHead(DoktorTable,resul);
+                FillTableWithContent(DoktorTable,resul);
+            } catch (SQLException e)
+            {
+                Alert error = new Alert(Alert.AlertType.ERROR,e.getMessage(),ButtonType.OK);
+                error.showAndWait();
+            }
+        });
+
+        Kontaktdaten.setOnSelectionChanged(selectionChanged->
+        {
+            ClearTable(KontaktdatenTable);
+            ResultSet resul;
+            try {
+                resul=db.runQuerry("Select * from Kontaktdaten;");
+                GenerateTableHead(KontaktdatenTable,resul);
+                FillTableWithContent(KontaktdatenTable,resul);
+            } catch (SQLException e)
+            {
+                Alert error = new Alert(Alert.AlertType.ERROR,e.getMessage(),ButtonType.OK);
+                error.showAndWait();
+            }
+        });
+        Labor.setOnSelectionChanged(selectionChanged->
+        {
+            ClearTable(LaborTable);
+            ResultSet resul;
+            try {
+                resul=db.runQuerry("Select * from Labor;");
+                GenerateTableHead(LaborTable,resul);
+                FillTableWithContent(LaborTable,resul);
+            } catch (SQLException e)
+            {
+                Alert error = new Alert(Alert.AlertType.ERROR,e.getMessage(),ButtonType.OK);
+                error.showAndWait();
+            }
+        });
+
+        Rechnung.setOnSelectionChanged(selectionChanged->
+        {
+            ClearTable(RechnungTable);
+            ResultSet resul;
+            try {
+                resul=db.runQuerry("Select * from Rechnung;");
+                GenerateTableHead(RechnungTable,resul);
+                FillTableWithContent(RechnungTable,resul);
+            } catch (SQLException e)
+            {
+                Alert error = new Alert(Alert.AlertType.ERROR,e.getMessage(),ButtonType.OK);
+                error.showAndWait();
+            }
+        });
+
+        Patient.setOnSelectionChanged(selectionChanged->
+        {
+            ClearTable(PatientTable);
+            ResultSet resul;
+            try {
+                resul=db.runQuerry("Select * from Patient;");
+                GenerateTableHead(PatientTable,resul);
+                FillTableWithContent(PatientTable,resul);
+            } catch (SQLException e)
+            {
+                Alert error = new Alert(Alert.AlertType.ERROR,e.getMessage(),ButtonType.OK);
+                error.showAndWait();
+            }
+        });
+
+        Raum.setOnSelectionChanged(selectionChanged->
+        {
+            ClearTable(RaumTable);
+            ResultSet resul;
+            try {
+                resul=db.runQuerry("Select * from Raum;");
+                GenerateTableHead(RaumTable,resul);
+                FillTableWithContent(RaumTable,resul);
+            } catch (SQLException e)
+            {
+                Alert error = new Alert(Alert.AlertType.ERROR,e.getMessage(),ButtonType.OK);
+                error.showAndWait();
+            }
+        });
+    }
+
+    private void UpdateTableView(String table) {
+        ResultSet resul;
+        try {
+            resul=db.runQuerry("Select * from "+table+";");
+            GenerateTableHead(AbteilungTable,resul);
+            FillTableWithContent(AbteilungTable,resul);
+        } catch (SQLException e)
+        {
+            Alert error = new Alert(Alert.AlertType.ERROR,e.getMessage(),ButtonType.OK);
+            error.showAndWait();
+        }
+    }
 
     public void setDatenbank(Datenbank db){
         this.db = db;
@@ -199,5 +343,44 @@ public class MainViewController {
     @FXML
     private void onExportButtonClick(){
 
+    }
+
+    private void FillTableWithContent(TableView view, ResultSet result) throws SQLException {
+        ObservableList<ObservableList> data = FXCollections.observableArrayList();
+        while(result.next()){
+            //Iterate Row
+            ObservableList<String> row = FXCollections.observableArrayList();
+            for(int i = 1; i<= result.getMetaData().getColumnCount(); i++){
+                //Iterate Column
+                row.add(result.getString(i));
+            }
+            data.add(row);
+        }
+        view.setItems(data);
+    }
+
+    private void GenerateTableHead(TableView view, ResultSet result) throws SQLException {
+        //get columns
+        //Stackoverflow: https://stackoverflow.com/questions/18941093/how-to-fill-up-a-tableview-with-database-data
+        for (int i = 0; i < result.getMetaData().getColumnCount(); i++) {
+            final int j = i;
+            TableColumn col = new TableColumn<>(result.getMetaData().getColumnName(i + 1));
+            col.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<ObservableList, String>, ObservableValue<String>>() {
+                public ObservableValue<String> call(TableColumn.CellDataFeatures<ObservableList, String> param) {
+                    return new SimpleStringProperty(param.getValue().get(j).toString());
+                }
+            });
+
+            view.getColumns().addAll(col);
+        }
+    }
+
+    private void ClearTable(TableView table)
+    {
+        int lastelementindex = table.getColumns().size()-1;
+        table.getColumns().remove(0,lastelementindex);
+
+        lastelementindex = table.getItems().size()-1;
+        table.getItems().remove(0,lastelementindex);
     }
 }
