@@ -20,7 +20,7 @@ public class addLaborController {
     @FXML
     private ComboBox<String> DoktorBox;
 
-    public addLaborController(MainViewController mainViewController) throws SQLException {
+    public addLaborController(MainViewController mainViewController) {
         this.mainViewController =  mainViewController;
     }
 
@@ -34,7 +34,7 @@ public class addLaborController {
     }
 
     public void populateDoktorBox() throws SQLException {
-        ArrayList<String> Doktor = mainViewController.getDb().returnForeigKeys("SELECT Nachname FROM Doktor;", "DoktorID");
+        ArrayList<String> Doktor = mainViewController.getDb().returnForeigKeys("SELECT Nachname FROM Doktor;", "Nachname");
         for(String s : Doktor){
             DoktorBox.getItems().add(s);
         }
@@ -46,8 +46,8 @@ public class addLaborController {
 
     @FXML
     private void onClickSaveEntry() throws SQLException {
-        String querry = "INSERT INTO Doktor (Menge, Datum, DoktorID) VALUES ('"+
-                MengeText.getText()+"','"+datePicker.getValue().format(DateTimeFormatter.ofPattern("dd.MM.yyyy"))+"',"+
+        String querry = "INSERT INTO Labor (Menge, Datum, DoktorID) VALUES ('"+
+                MengeText.getText()+"','"+datePicker.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))+"',"+
                 getDoktorID(DoktorBox.getSelectionModel().getSelectedItem())+");";
         mainViewController.getDb().runQuerry(querry);
         mainViewController.getPopupStage().close();

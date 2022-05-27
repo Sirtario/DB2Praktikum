@@ -36,7 +36,7 @@
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nachname" GridPane.rowIndex="1" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Vorname" GridPane.rowIndex="2" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Geburtstag" GridPane.rowIndex="3" />
-            <DatePicker fx:id="DatePicker" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <DatePicker fx:id="datePicker" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Versicherungsnummer" GridPane.rowIndex="4" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Behandlungsnummer" GridPane.rowIndex="5" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Stationär" GridPane.rowIndex="6" />

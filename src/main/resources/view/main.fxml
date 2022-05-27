@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 
-<BorderPane prefHeight="350.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Kiss.controller.MainViewController">
+<BorderPane prefHeight="350.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Kiss.controller.MainViewController">
    <top>
        <MenuBar id="MenuBar" BorderPane.alignment="CENTER">
            <Menu mnemonicParsing="false" text="File">
@@ -26,7 +26,7 @@
        </MenuBar>
    </top>
    <center>
-       <TabPane layoutY="46.0" prefHeight="355.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0">
+       <TabPane fx:id="tabPane" layoutY="46.0" prefHeight="355.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0">
            <Tab fx:id="Abteilung" text="Abteilung">
                <AnchorPane prefHeight="200.0" prefWidth="200.0">
                    <TableView fx:id="AbteilungTable" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
