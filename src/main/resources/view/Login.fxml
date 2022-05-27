@@ -16,6 +16,6 @@
    <TextField fx:id="UserNameInput" layoutX="47.0" layoutY="78.0" />
    <Label layoutX="97.0" layoutY="111.0" text="Password" />
    <Label layoutX="95.0" layoutY="61.0" text="Username" />
-   <Button layoutX="99.0" layoutY="166.0" mnemonicParsing="false" onAction="#onLoginButtonClick" text="Login" />
    <PasswordField fx:id="PasswordInput" layoutX="48.0" layoutY="128.0" />
+   <Button layoutX="99.0" layoutY="166.0" mnemonicParsing="false" onAction="#onLoginButtonClick" text="Login" />
 </AnchorPane>

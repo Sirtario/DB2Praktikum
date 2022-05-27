@@ -1,6 +1,8 @@
 package Kiss.controller;
 
+import Kiss.Datenbank;
 import Kiss.model.DatabaseConnector;
+import com.sun.tools.javac.Main;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -24,7 +26,6 @@ public class LoginController {
     private TextField UserNameInput;
     @FXML
     private PasswordField PasswordInput;
-
     private Connection con;
 
     @FXML
@@ -51,15 +52,14 @@ public class LoginController {
 
     private void LoadMainView() throws IOException {
         Stage stage = (Stage) ViewBase.getScene().getWindow();
+
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../../view/main.fxml"));
 
         Parent root = loader.load();
-
         MainViewController controller = loader.getController();
-        controller.setDbConnection(con);
-
+        controller.setDatenbank(new Datenbank(con));
         stage.setTitle("KIS");
-        stage.setScene(new Scene(root, 400, 300));
+        stage.setScene(new Scene(root, 600, 400));
         stage.show();
     }
 
