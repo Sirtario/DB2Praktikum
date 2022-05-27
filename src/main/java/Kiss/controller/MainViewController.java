@@ -2,6 +2,7 @@ package Kiss.controller;
 
 import Kiss.Datenbank;
 import Kiss.controller.add.*;
+import Kiss.model.XmlExporterService;
 import Kiss.model.XmlExporterServiceImpl;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
@@ -30,9 +31,11 @@ public class MainViewController {
     @FXML
     private TableView AbteilungTable, BettTable, DiagnoseTable, DoktorTable, KontaktdatenTable, LaborTable, PatientTable, RechnungTable, RaumTable;
 
+    @FXML
+    MenuItem exportMenuButton;
+
     private Stage popupStage;
 
-    private XmlExporterServiceImpl xmlExporterServiceImpl;
     private Datenbank db;
     @FXML
     public void initialize(){
@@ -179,30 +182,13 @@ public class MainViewController {
         this.db = db;
     }
 
-    /*
+
     @FXML
     private void onExportXML() {
         XmlExporterService xmlExporterService = new XmlExporterServiceImpl();
 
         xmlExporterService.createXMLFileFromDatabase(db.getConnection(), "Abteilung");
     }
-
-    @FXML
-    private void onDeleteButtonClick(){
-        String table = tabPane.getSelectionModel().getSelectedItem().toString();
-        switch(table){
-            case "Abteilung": db.deleteEntry("Abteilung", "AbteilungsID", //TODO: Hier muss dann jeweils der Wert der ersten Zelle der ausgewählten Zeile rein(also halt die ID));
-            case "Bett": db.deleteEntry("Bett","BettID",);
-            case "Diagnose": db.deleteEntry("Diagnose","DiagnoseID",);
-            case "Doktor": db.deleteEntry("Doktor","DoktorID",);
-            case "Kontaktdaten": db.deleteEntry("Kontaktdaten","KontaktdatenID",);
-            case "Labor": db.deleteEntry("Labor","LaborID",);
-            case "Patient": db.deleteEntry("Patient","PatientID",);
-            case "Rechnung": db.deleteEntry("Rechnung","RechnungID",);
-            case "Raum": db.deleteEntry("Raum","RaumID",);
-        }
-    }
-*/
 
     public Datenbank getDb(){
         return db;
@@ -327,22 +313,7 @@ public class MainViewController {
 
         } catch(IOException e) {
             e.printStackTrace();
-        };
-    }
-
-    @FXML
-    private void onReloadButtonClick(){
-
-    }
-
-    @FXML
-    private void onEditButtonClick(){
-
-    }
-
-    @FXML
-    private void onExportButtonClick(){
-
+        }
     }
 
     private void FillTableWithContent(TableView view, ResultSet result) throws SQLException {

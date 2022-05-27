@@ -9,118 +9,70 @@
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
-
-
 <?import javafx.scene.layout.BorderPane?>
-<BorderPane prefHeight="350.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+
+<BorderPane prefHeight="350.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Kiss.controller.MainViewController">
    <top>
-      <MenuBar id="MenuBar" BorderPane.alignment="CENTER">
-         <menus>
-            <Menu mnemonicParsing="false" text="File">
-               <items>
-                  <MenuItem fx:id="exportMenuButton" mnemonicParsing="false" onAction="#onExportXML" text="Export..." />
-               </items>
-            </Menu>
-            <Menu mnemonicParsing="false" text="Edit">
-               <items>
-                  <MenuItem mnemonicParsing="false" text="Delete" />
-               </items>
-            </Menu>
-            <Menu mnemonicParsing="false" text="Help">
-               <items>
-                  <MenuItem mnemonicParsing="false" text="About" />
-               </items>
-            </Menu>
-         </menus>
-      </MenuBar>
+       <MenuBar id="MenuBar" BorderPane.alignment="CENTER">
+           <Menu mnemonicParsing="false" text="File">
+               <MenuItem fx:id="exportMenuButton" mnemonicParsing="false" onAction="#onExportXML" text="Export..." />
+           </Menu>
+           <Menu mnemonicParsing="false" text="Edit">
+               <MenuItem mnemonicParsing="false" text="Delete" />
+           </Menu>
+           <Menu mnemonicParsing="false" text="Help">
+               <MenuItem mnemonicParsing="false" text="About" />
+           </Menu>
+       </MenuBar>
    </top>
    <center>
-      <TabPane layoutY="46.0" prefHeight="355.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0">
-         <tabs>
-            <Tab text="Abteilung">
-               <content>
-                  <AnchorPane prefHeight="200.0" prefWidth="200.0">
-                     <children>
-                        <TableView fx:id="AbteilungTable" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                     </children>
-                  </AnchorPane>
-               </content>
-            </Tab>
-          <Tab fx:id="Bett" text="Bett">
-              <content>
-                  <AnchorPane prefHeight="200.0" prefWidth="200.0">
-                      <children>
-                          <TableView fx:id="BettTable" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                      </children>
-                  </AnchorPane>
-               </content>
-            </Tab>
-            <Tab fx:id="Diagnose" text="Diagnose">
-                <content>
-                    <AnchorPane prefHeight="200.0" prefWidth="200.0">
-                        <children>
-                            <TableView fx:id="DiagnoseTable" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                        </children>
-                    </AnchorPane>
-                </content>
-            </Tab>
-            <Tab fx:id="Doktor" text="Doktor">
-                <content>
-                    <AnchorPane prefHeight="200.0" prefWidth="200.0">
-                        <children>
-                            <TableView fx:id="DoktorTable" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                        </children>
-                    </AnchorPane>
-                </content>
-            </Tab>
-            <Tab fx:id="Kontaktdaten" text="Kontaktdaten">
-                <content>
-                    <AnchorPane prefHeight="200.0" prefWidth="200.0">
-                        <children>
-                            <TableView fx:id="KontaktdatenTable" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                        </children>
-                    </AnchorPane>
-                </content>
-            </Tab>
-            <Tab fx:id="Labor" text="Labor">
-                <content>
-                    <AnchorPane prefHeight="200.0" prefWidth="200.0">
-                        <children>
-                            <TableView fx:id="LaborTable" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                        </children>
-                    </AnchorPane>
-                </content>
-            </Tab>
-            <Tab fx:id="Patient" text="Patient">
-                <content>
-                    <AnchorPane prefHeight="200.0" prefWidth="200.0">
-                        <children>
-                            <TableView fx:id="PatientTable" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                        </children>
-                    </AnchorPane>
-                </content>
-            </Tab>
-            <Tab fx:id="Rechnung" text="Rechnung">
-                <content>
-                    <AnchorPane prefHeight="200.0" prefWidth="200.0">
-                        <children>
-                            <TableView fx:id="RechnungTable" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                        </children>
-                    </AnchorPane>
-                </content>
-            </Tab>
-            <Tab fx:id="Raum" text="Raum">
-                <content>
-                    <AnchorPane prefHeight="200.0" prefWidth="200.0">
-                        <children>
-                            <TableView fx:id="RaumTable" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                        </children>
-                    </AnchorPane>
-                </content>
-            </Tab>
-         </tabs>
-      </TabPane>
+       <TabPane layoutY="46.0" prefHeight="355.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0">
+           <Tab fx:id="Abteilung" text="Abteilung">
+               <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                   <TableView fx:id="AbteilungTable" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+               </AnchorPane>
+           </Tab>
+           <Tab fx:id="Bett" text="Bett">
+               <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                   <TableView fx:id="BettTable" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+               </AnchorPane>
+           </Tab>
+           <Tab fx:id="Diagnose" text="Diagnose">
+               <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                   <TableView fx:id="DiagnoseTable" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+               </AnchorPane>
+           </Tab>
+           <Tab fx:id="Doktor" text="Doktor">
+               <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                   <TableView fx:id="DoktorTable" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+               </AnchorPane>
+           </Tab>
+           <Tab fx:id="Kontaktdaten" text="Kontaktdaten">
+               <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                   <TableView fx:id="KontaktdatenTable" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+               </AnchorPane>
+           </Tab>
+           <Tab fx:id="Labor" text="Labor">
+               <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                   <TableView fx:id="LaborTable" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+               </AnchorPane>
+           </Tab>
+           <Tab fx:id="Patient" text="Patient">
+               <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                   <TableView fx:id="PatientTable" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+               </AnchorPane>
+           </Tab>
+           <Tab fx:id="Rechnung" text="Rechnung">
+               <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                   <TableView fx:id="RechnungTable" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+               </AnchorPane>
+           </Tab>
+           <Tab fx:id="Raum" text="Raum">
+               <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                   <TableView fx:id="RaumTable" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+               </AnchorPane>
+           </Tab>
+       </TabPane>
    </center>
    <bottom>
       <ButtonBar prefHeight="0.0" prefWidth="600.0" BorderPane.alignment="CENTER">

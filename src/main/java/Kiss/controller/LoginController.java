@@ -59,7 +59,7 @@ public class LoginController {
         MainViewController controller = loader.getController();
         controller.setDatenbank(new Datenbank(con));
         stage.setTitle("KIS");
-        stage.setScene(new Scene(root, 400, 300));
+        stage.setScene(new Scene(root, 600, 400));
         stage.show();
     }
 
