@@ -16,7 +16,7 @@ public class addRaumController {
     @FXML
     private ComboBox<String> StatusBox, AbteilungBox;
 
-    public addRaumController(MainViewController mainViewController) throws SQLException {
+    public addRaumController(MainViewController mainViewController) {
         this.mainViewController =  mainViewController;
     }
 

@@ -236,7 +236,6 @@ public class MainViewController {
             loader.setControllerFactory(addAbteilungController -> new addAbteilungController(this));
             openPopup(loader);
         } else if(tab.equals(Bett)){
-
             FXMLLoader loader = new FXMLLoader(getClass().getResource("../../view/add/addBett.fxml"));
             loader.setControllerFactory(addBettController -> new addBettController(this));
             openPopup(loader);
@@ -254,47 +253,19 @@ public class MainViewController {
             openPopup(loader);
         } else if(tab.equals(Labor)){
             FXMLLoader loader = new FXMLLoader(getClass().getResource("../../view/add/addLabor.fxml"));
-            loader.setControllerFactory(addLaborController -> {
-                try {
-                    return new addLaborController(this);
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-                return null;
-            });
+            loader.setControllerFactory(addLaborController -> new addLaborController(this));
             openPopup(loader);
         } else if(tab.equals(Patient)){
             FXMLLoader loader = new FXMLLoader(getClass().getResource("../../view/add/addPatient.fxml"));
-            loader.setControllerFactory(addPatientController -> {
-                try {
-                    return new addPatientController(this);
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-                return null;
-            });
+            loader.setControllerFactory(addPatientController -> new addPatientController(this));
             openPopup(loader);
         } else if(tab.equals(Raum)){
             FXMLLoader loader = new FXMLLoader(getClass().getResource("../../view/add/addRaum.fxml"));
-            loader.setControllerFactory(addRaumController -> {
-                try {
-                    return new addRaumController(this);
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-                return null;
-            });
+            loader.setControllerFactory(addRaumController -> new addRaumController(this));
             openPopup(loader);
         } else if(tab.equals(Rechnung)){
             FXMLLoader loader = new FXMLLoader(getClass().getResource("../../view/add/addRechnung.fxml"));
-            loader.setControllerFactory(addRechnungController -> {
-                try {
-                    return new addRechnungController(this);
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-                return null;
-            });
+            loader.setControllerFactory(addRechnungController -> new addRechnungController(this));
             openPopup(loader);
         }
     }

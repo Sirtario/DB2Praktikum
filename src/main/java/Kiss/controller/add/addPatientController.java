@@ -20,7 +20,7 @@ public class addPatientController {
     @FXML
     private ComboBox<String> StationaerBox, KontaktdatenBox, DoktorBox, LaborBox, GeschlechtBox;
 
-    public addPatientController(MainViewController mainViewController) throws SQLException {
+    public addPatientController(MainViewController mainViewController) {
         this.mainViewController =  mainViewController;
     }
 
@@ -53,7 +53,7 @@ public class addPatientController {
     }
 
     public void populateDoktorBox() throws SQLException {
-        ArrayList<String> Doktor = mainViewController.getDb().returnForeigKeys("SELECT Nachname FROM Doktor;", "DoktorID");
+        ArrayList<String> Doktor = mainViewController.getDb().returnForeigKeys("SELECT Nachname FROM Doktor;", "Nachname");
         for(String s : Doktor){
             DoktorBox.getItems().add(s);
         }
@@ -72,11 +72,11 @@ public class addPatientController {
 
     @FXML
     private void onClickSaveEntry() throws SQLException {
-        String querry = "INSERT INTO Patient (Nachname, Vorname, Versicherungsnummer, Behandlungsnummer, Geburtstag, Stationaer, KontaktdatenID, LaborID, DoktorID) VALUES ('"
+        String querry = "INSERT INTO Patient (Nachname, Vorname, Versicherungsnummer, Behandlungsnummer, Geburtstag, Stationaer, KontaktdatenID, LaborID, DoktorID, Geschlecht) VALUES ('"
                 + NachnameText.getText()+"', '"+VornameText.getText()+"', '"+VersicherungsnummerText.getText()+"', '"+BehandlungsnummerText.getText()+"', '"+
-                datePicker.getValue().format(DateTimeFormatter.ofPattern("dd.MM.yyyy"))+"',"+StationaerBox.getSelectionModel().getSelectedItem()+", "+
+                datePicker.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))+"',"+StationaerBox.getSelectionModel().getSelectedItem()+", "+
                 KontaktdatenBox.getSelectionModel().getSelectedItem()+", "+LaborBox.getSelectionModel().getSelectedItem()+", "+
-                getDoktorID(DoktorBox.getSelectionModel().getSelectedItem())+");";
+                getDoktorID(DoktorBox.getSelectionModel().getSelectedItem())+", '"+GeschlechtBox.getSelectionModel().getSelectedItem()+"');";
         mainViewController.getDb().runQuerry(querry);
         mainViewController.getPopupStage().close();
     }

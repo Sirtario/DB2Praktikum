@@ -12,11 +12,11 @@ public class addRechnungController {
     private MainViewController mainViewController;
 
     @FXML
-    private TextField AnzTageText;
+    private TextField anzTageText;
     @FXML
     private ComboBox<String> LaborBox, RaumBox, DoktorBox, PatientBox;
 
-    public addRechnungController(MainViewController mainViewController) throws SQLException {
+    public addRechnungController(MainViewController mainViewController) {
         this.mainViewController =  mainViewController;
     }
 
@@ -70,8 +70,8 @@ public class addRechnungController {
 
     @FXML
     private void onClickSaveEntry() throws SQLException {
-        String querry = "INSERT INTO Rechnung (AnzahlTage, LaborID, RaumID, DoktorID, PatientID) VALUES ('"+
-                AnzTageText.getText()+"',"+LaborBox.getSelectionModel().getSelectedItem()+", "+RaumBox.getSelectionModel().getSelectedItem()+", "+
+        String querry = "INSERT INTO Rechnung (AnzahlTage, LaborID, RaumID, DoktorID, PatientenID) VALUES ("+
+                anzTageText.getText()+","+LaborBox.getSelectionModel().getSelectedItem()+", "+RaumBox.getSelectionModel().getSelectedItem()+", "+
                 getDoktorID(DoktorBox.getSelectionModel().getSelectedItem())+", "+
                 getPatientID(PatientBox.getSelectionModel().getSelectedItem())+");";
         mainViewController.getDb().runQuerry(querry);
