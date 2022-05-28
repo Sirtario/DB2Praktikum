@@ -4,10 +4,12 @@ import Kiss.Datenbank;
 import Kiss.controller.add.*;
 import Kiss.model.XmlExporterService;
 import Kiss.model.XmlExporterServiceImpl;
+import com.microsoft.sqlserver.jdbc.SQLServerException;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -43,6 +45,7 @@ public class MainViewController {
         {
             ClearTable(AbteilungTable);
             UpdateTableView("Abteilung");
+            SetButtonsToTable(AbteilungTable,"Abteilung","AbteilungsID");
         });
 
         Bett.setOnSelectionChanged(selectionChanged->
@@ -53,6 +56,7 @@ public class MainViewController {
                 resul=db.runQuerry("Select * from Bett;");
                 GenerateTableHead(BettTable,resul);
                 FillTableWithContent(BettTable,resul);
+                SetButtonsToTable(BettTable,"Bett","BettID");
             } catch (SQLException e)
             {
                 Alert error = new Alert(Alert.AlertType.ERROR,e.getMessage(),ButtonType.OK);
@@ -68,6 +72,7 @@ public class MainViewController {
                 resul=db.runQuerry("Select * from Diagnose;");
                 GenerateTableHead(DiagnoseTable,resul);
                 FillTableWithContent(DiagnoseTable,resul);
+                SetButtonsToTable(DiagnoseTable,"Diagnose","DiagnoseID");
             } catch (SQLException e)
             {
                 Alert error = new Alert(Alert.AlertType.ERROR,e.getMessage(),ButtonType.OK);
@@ -83,6 +88,7 @@ public class MainViewController {
                 resul=db.runQuerry("Select * from Doktor;");
                 GenerateTableHead(DoktorTable,resul);
                 FillTableWithContent(DoktorTable,resul);
+                SetButtonsToTable(DoktorTable,"Doktor","DoktorID");
             } catch (SQLException e)
             {
                 Alert error = new Alert(Alert.AlertType.ERROR,e.getMessage(),ButtonType.OK);
@@ -98,6 +104,7 @@ public class MainViewController {
                 resul=db.runQuerry("Select * from Kontaktdaten;");
                 GenerateTableHead(KontaktdatenTable,resul);
                 FillTableWithContent(KontaktdatenTable,resul);
+                SetButtonsToTable(KontaktdatenTable,"Kontaktdaten","KontaktdatenID");
             } catch (SQLException e)
             {
                 Alert error = new Alert(Alert.AlertType.ERROR,e.getMessage(),ButtonType.OK);
@@ -112,6 +119,7 @@ public class MainViewController {
                 resul=db.runQuerry("Select * from Labor;");
                 GenerateTableHead(LaborTable,resul);
                 FillTableWithContent(LaborTable,resul);
+                SetButtonsToTable(LaborTable,"Labor","LaborID");
             } catch (SQLException e)
             {
                 Alert error = new Alert(Alert.AlertType.ERROR,e.getMessage(),ButtonType.OK);
@@ -127,6 +135,7 @@ public class MainViewController {
                 resul=db.runQuerry("Select * from Rechnung;");
                 GenerateTableHead(RechnungTable,resul);
                 FillTableWithContent(RechnungTable,resul);
+                SetButtonsToTable(RechnungTable,"Rechnung","RechnungsID");
             } catch (SQLException e)
             {
                 Alert error = new Alert(Alert.AlertType.ERROR,e.getMessage(),ButtonType.OK);
@@ -142,6 +151,7 @@ public class MainViewController {
                 resul=db.runQuerry("Select * from Patient;");
                 GenerateTableHead(PatientTable,resul);
                 FillTableWithContent(PatientTable,resul);
+                SetButtonsToTable(PatientTable,"Patient","PatientenID");
             } catch (SQLException e)
             {
                 Alert error = new Alert(Alert.AlertType.ERROR,e.getMessage(),ButtonType.OK);
@@ -157,6 +167,7 @@ public class MainViewController {
                 resul=db.runQuerry("Select * from Raum;");
                 GenerateTableHead(RaumTable,resul);
                 FillTableWithContent(RaumTable,resul);
+                SetButtonsToTable(RaumTable,"Raum","RaumID");
             } catch (SQLException e)
             {
                 Alert error = new Alert(Alert.AlertType.ERROR,e.getMessage(),ButtonType.OK);
@@ -331,8 +342,6 @@ public class MainViewController {
     }
 
     private void GenerateTableHead(TableView view, ResultSet result) throws SQLException {
-        //get columns
-        //Stackoverflow: https://stackoverflow.com/questions/18941093/how-to-fill-up-a-tableview-with-database-data
         for (int i = 0; i < result.getMetaData().getColumnCount(); i++) {
             final int j = i;
             TableColumn col = new TableColumn<>(result.getMetaData().getColumnName(i + 1));
@@ -345,7 +354,64 @@ public class MainViewController {
             view.getColumns().addAll(col);
         }
     }
+/**
+ * generates a new column in the given table with delete buttons
+ * @param tableView the tableview where the generated column should go
+ * @param tableName the sql table name
+ * @param primaryKey name of the pk in the table*/
+    private void SetButtonsToTable(TableView tableView, String tableName, String primaryKey)
+    {
+        TableColumn<ObservableList,String> buttonColumn = new TableColumn<>("Delete");
 
+        Callback<TableColumn<ObservableList, String>, TableCell<ObservableList, String>> cellFactory = generateDeleteCellFactory(tableName,primaryKey);
+        buttonColumn.setCellFactory(cellFactory);
+
+        tableView.getColumns().add(buttonColumn);
+    }
+
+    /**
+     * Generates a CellFactory with the delete buttons and their functionality
+     */
+    private Callback<TableColumn<ObservableList, String>, TableCell<ObservableList, String>> generateDeleteCellFactory(String table, String pk) {
+        Callback<TableColumn<ObservableList,String>,TableCell<ObservableList,String>> cellFactory = new Callback<>() {
+
+            @Override
+            public TableCell<ObservableList, String> call(TableColumn<ObservableList, String> param) {
+                final TableCell<ObservableList, String> cell = new TableCell<ObservableList, String>() {
+
+                    private final Button btn = new Button("Delete");
+
+                    {
+                        btn.setOnAction((ActionEvent event) -> {
+                            ObservableList data = getTableView().getItems().get(getIndex());
+
+                            try {
+                                db.runQuerry("DELETE FROM "+table+" Where "+pk+"=" + data.get(0) + ";");
+                            } catch (SQLException e) {
+                                Alert sqlAlert = new Alert(Alert.AlertType.ERROR, e.getMessage(), ButtonType.OK);
+                                sqlAlert.showAndWait();
+                            }
+                        });
+                    }
+
+                    @Override
+                    public void updateItem(String item, boolean empty) {
+                        super.updateItem(item, empty);
+                        if (empty) {
+                            setGraphic(null);
+                        } else {
+                            setGraphic(btn);
+                        }
+                    }
+                };
+                return cell;
+            }
+        };
+        return cellFactory;
+    }
+
+    /**
+     * Removes everything from the Tableview*/
     private void ClearTable(TableView table)
     {
         int lastelementindex = table.getColumns().size()-1;
