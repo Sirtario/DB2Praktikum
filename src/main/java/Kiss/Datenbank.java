@@ -18,8 +18,7 @@ public class Datenbank {
             statement.execute(querry);
             return statement.getResultSet();
         } catch(SQLException exception){
-            exception.printStackTrace();
-            return null;
+            throw exception;
         }
     }
 
