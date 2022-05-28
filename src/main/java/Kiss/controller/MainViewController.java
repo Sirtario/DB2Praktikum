@@ -4,7 +4,6 @@ import Kiss.Datenbank;
 import Kiss.controller.add.*;
 import Kiss.model.XmlExporterService;
 import Kiss.model.XmlExporterServiceImpl;
-import com.microsoft.sqlserver.jdbc.SQLServerException;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -302,12 +301,17 @@ public class MainViewController {
  * @param primaryKey name of the pk in the table*/
     private void SetButtonsToTable(TableView tableView, String tableName, String primaryKey)
     {
-        TableColumn<ObservableList,String> buttonColumn = new TableColumn<>("Delete");
+        TableColumn<ObservableList,String> deleteButtonColumn = new TableColumn<>("Delete");
+        TableColumn<ObservableList,String> editButtonColumn = new TableColumn<>("Edit");
 
-        Callback<TableColumn<ObservableList, String>, TableCell<ObservableList, String>> cellFactory = generateDeleteCellFactory(tableName,primaryKey);
-        buttonColumn.setCellFactory(cellFactory);
+        Callback<TableColumn<ObservableList, String>, TableCell<ObservableList, String>> deleteCellFactory = generateDeleteCellFactory(tableName,primaryKey);
+        deleteButtonColumn.setCellFactory(deleteCellFactory);
 
-        tableView.getColumns().add(buttonColumn);
+        Callback<TableColumn<ObservableList,String>,TableCell<ObservableList,String>> editCellFactory = generateEditCellFactory();
+        editButtonColumn.setCellFactory(editCellFactory);
+
+        tableView.getColumns().add(editButtonColumn);
+        tableView.getColumns().add(deleteButtonColumn);
     }
 
     /**
@@ -351,7 +355,10 @@ public class MainViewController {
         return cellFactory;
     }
 
-    private Callback<TableColumn<ObservableList, String>, TableCell<ObservableList, String>> generateEditCellFactory(String table, String pk) {
+    /**
+     * Generates a CellFactory with edit button and injects the data to be changed
+     */
+    private Callback<TableColumn<ObservableList, String>, TableCell<ObservableList, String>> generateEditCellFactory() {
         Callback<TableColumn<ObservableList,String>,TableCell<ObservableList,String>> cellFactory = new Callback<>() {
 
             @Override
