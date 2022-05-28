@@ -33,8 +33,17 @@ public class editAbteilungController extends addAbteilungController {
     @FXML
     protected void onClickSaveEntry() throws SQLException
     {
-        String querry = "UPDATE Abteilung SET AbteilungsBeschreibung = '"+BeschreibungText.getText()+"', AbteilungsStandort = '"+StandortText.getText()+"', AbteilungsName = '"+AbteilungsnameText.getText()+"' WHERE AbteilungsID ="+id+";";
+        String querry = "UPDATE Abteilung SET AbteilungsBeschreibung = '"
+                +BeschreibungText.getText()
+                +"', AbteilungsStandort = '"
+                +StandortText.getText()
+                +"', AbteilungsName = '"
+                +AbteilungsnameText.getText()
+                +"' WHERE AbteilungsID ="
+                +id
+                +";";
         mainViewController.getDb().runQuerry(querry);
         mainViewController.getPopupStage().close();
+
     }
 }
