@@ -209,36 +209,6 @@ public class MainViewController {
         return popupStage;
     }
 
-
-    @FXML
-    private void onDeleteButtonClick() throws SQLException {
-        /*
-        Tab tab = tabPane.getSelectionModel().getSelectedItem();
-        String querry = "";
-        if(tab.equals(Abteilung)){
-            querry = "DELETE FROM Abteilung WHERE AbteilungsID = "++";"; //TODO: ID des ausgewählten Elements
-        } else if(tab.equals(Bett)){
-            querry = "DELETE FROM Bett WHERE BettID = "++";"; //TODO: ID des ausgewählten Elements
-        } else if(tab.equals(Diagnose)){
-            querry = "DELETE FROM Diagnose WHERE DiagnoseID = "++";"; //TODO: ID des ausgewählten Elements
-        } else if(tab.equals(Doktor)){
-            querry = "DELETE FROM Doktor WHERE DoktorID = "++";"; //TODO: ID des ausgewählten Elements
-        } else if(tab.equals(Kontaktdaten)){
-            querry = "DELETE FROM Kontaktdaten WHERE KontkatdatenID = "++";"; //TODO: ID des ausgewählten Elements
-        } else if(tab.equals(Labor)){
-            querry = "DELETE FROM Labor WHERE LaborID = "++";"; //TODO: ID des ausgewählten Elements
-        } else if(tab.equals(Patient)){
-            querry = "DELETE FROM Patient WHERE PatientID = "++";"; //TODO: ID des ausgewählten Elements
-        } else if(tab.equals(Raum)){
-            querry = "DELETE FROM Raum WHERE RaumID = "++";"; //TODO: ID des ausgewählten Elements
-        } else if(tab.equals(Rechnung)){
-            querry = "DELETE FROM Rechnung WHERE RechnungsID = "++";"; //TODO: ID des ausgewählten Elements
-        }
-        db.runQuerry(querry);
-
-     */
-    }
-
     @FXML
     private void onAddButtonClick() throws SQLException{
         Tab tab = tabPane.getSelectionModel().getSelectedItem();
@@ -385,10 +355,12 @@ public class MainViewController {
      * Removes everything from the Tableview*/
     private void ClearTable(TableView table)
     {
-        int lastelementindex = table.getColumns().size()-1;
+        if(table.getColumns().size()==0){return;}
+
+        int lastelementindex = table.getColumns().size();
         table.getColumns().remove(0,lastelementindex);
 
-        lastelementindex = table.getItems().size()-1;
+        lastelementindex = table.getItems().size();
         table.getItems().remove(0,lastelementindex);
     }
 }
