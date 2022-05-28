@@ -351,6 +351,39 @@ public class MainViewController {
         return cellFactory;
     }
 
+    private Callback<TableColumn<ObservableList, String>, TableCell<ObservableList, String>> generateEditCellFactory(String table, String pk) {
+        Callback<TableColumn<ObservableList,String>,TableCell<ObservableList,String>> cellFactory = new Callback<>() {
+
+            @Override
+            public TableCell<ObservableList, String> call(TableColumn<ObservableList, String> param) {
+                final TableCell<ObservableList, String> cell = new TableCell<ObservableList, String>() {
+
+                    private final Button btn = new Button("Edit");
+
+                    {
+                        btn.setOnAction((ActionEvent event) -> {
+                            ObservableList data = getTableView().getItems().get(getIndex());
+
+                            //TODO: UI zum ändern und speichern
+                        });
+                    }
+
+                    @Override
+                    public void updateItem(String item, boolean empty) {
+                        super.updateItem(item, empty);
+                        if (empty) {
+                            setGraphic(null);
+                        } else {
+                            setGraphic(btn);
+                        }
+                    }
+                };
+                return cell;
+            }
+        };
+        return cellFactory;
+    }
+
     /**
      * Removes everything from the Tableview*/
     private void ClearTable(TableView table)
