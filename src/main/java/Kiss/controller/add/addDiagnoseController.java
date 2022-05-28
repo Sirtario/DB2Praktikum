@@ -9,12 +9,12 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class addDiagnoseController {
-    private MainViewController mainViewController;
+    protected MainViewController mainViewController;
 
     @FXML
-    private ComboBox<String> PatientBox;
+    protected ComboBox<String> PatientBox;
     @FXML
-    private TextField BezeichnungText;
+    protected TextField BezeichnungText;
 
     public addDiagnoseController(MainViewController mainViewController) {
         this.mainViewController =  mainViewController;
@@ -41,7 +41,7 @@ public class addDiagnoseController {
     }
 
     @FXML
-    private void onClickSaveEntry() throws SQLException {
+    protected void onClickSaveEntry() throws SQLException {
         String querry = "INSERT INTO Diagnose (PatientenID, DiagnoseBezeichnung) VALUES ("+
                 getPatientID(PatientBox.getSelectionModel().getSelectedItem())+", '"+BezeichnungText.getText()+"');";
         mainViewController.getDb().runQuerry(querry);

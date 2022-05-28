@@ -4,6 +4,7 @@ import Kiss.Datenbank;
 import Kiss.controller.add.*;
 import Kiss.controller.edit.editAbteilungController;
 import Kiss.controller.edit.editBettController;
+import Kiss.controller.edit.editDiagnoseController;
 import Kiss.model.XmlExporterService;
 import Kiss.model.XmlExporterServiceImpl;
 import javafx.beans.property.SimpleStringProperty;
@@ -389,7 +390,7 @@ public class MainViewController {
                                 openPopup(loader);
                             } else if(tab.equals(Diagnose)){
                                 FXMLLoader loader = new FXMLLoader(getClass().getResource("../../view/add/addDiagnose.fxml"));
-                                //loader.setControllerFactory(addDiagnoseController -> new addDiagnoseController(this));
+                                loader.setControllerFactory(editDiagnoseController -> new editDiagnoseController((String)data.get(0),(String)data.get(1),(String)data.get(2),main));
                                 openPopup(loader);
                             } else if(tab.equals(Doktor)){
                                 FXMLLoader loader = new FXMLLoader(getClass().getResource("../../view/add/addDoktor.fxml"));
