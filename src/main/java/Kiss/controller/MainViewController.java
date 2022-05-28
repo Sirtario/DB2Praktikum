@@ -2,6 +2,7 @@ package Kiss.controller;
 
 import Kiss.Datenbank;
 import Kiss.controller.add.*;
+import Kiss.controller.edit.editAbteilungController;
 import Kiss.model.XmlExporterService;
 import Kiss.model.XmlExporterServiceImpl;
 import javafx.beans.property.SimpleStringProperty;
@@ -36,6 +37,8 @@ public class MainViewController {
     MenuItem exportMenuButton;
 
     private Stage popupStage;
+
+
 
     private Datenbank db;
     @FXML
@@ -359,6 +362,8 @@ public class MainViewController {
      * Generates a CellFactory with edit button and injects the data to be changed
      */
     private Callback<TableColumn<ObservableList, String>, TableCell<ObservableList, String>> generateEditCellFactory() {
+        MainViewController main = this;
+
         Callback<TableColumn<ObservableList,String>,TableCell<ObservableList,String>> cellFactory = new Callback<>() {
 
             @Override
@@ -371,7 +376,11 @@ public class MainViewController {
                         btn.setOnAction((ActionEvent event) -> {
                             ObservableList data = getTableView().getItems().get(getIndex());
 
-                            //TODO: UI zum ändern und speichern
+
+
+                            FXMLLoader loader = new FXMLLoader(getClass().getResource("../../view/add/addAbteilung.fxml"));
+                            loader.setControllerFactory(controller-> new editAbteilungController((String) data.get(0),(String) data.get(1), (String) data.get(2),(String)data.get(3), main));
+                            openPopup(loader);
                         });
                     }
 
