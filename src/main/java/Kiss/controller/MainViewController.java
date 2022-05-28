@@ -3,6 +3,7 @@ package Kiss.controller;
 import Kiss.Datenbank;
 import Kiss.controller.add.*;
 import Kiss.controller.edit.editAbteilungController;
+import Kiss.controller.edit.editBettController;
 import Kiss.model.XmlExporterService;
 import Kiss.model.XmlExporterServiceImpl;
 import javafx.beans.property.SimpleStringProperty;
@@ -377,10 +378,46 @@ public class MainViewController {
                             ObservableList data = getTableView().getItems().get(getIndex());
 
 
+                            Tab tab = tabPane.getSelectionModel().getSelectedItem();
+                            if(tab.equals(Abteilung)){
+                                FXMLLoader loader = new FXMLLoader(getClass().getResource("../../view/add/addAbteilung.fxml"));
+                                loader.setControllerFactory(editAbteilungController -> new editAbteilungController((String) data.get(0),(String)data.get(1),(String) data.get(2),(String) data.get(3),main));
+                                openPopup(loader);
+                            } else if(tab.equals(Bett)){
+                                FXMLLoader loader = new FXMLLoader(getClass().getResource("../../view/add/addBett.fxml"));
+                                loader.setControllerFactory(editBettController -> new editBettController((String) data.get(0),(String) data.get(1), main));
+                                openPopup(loader);
+                            } else if(tab.equals(Diagnose)){
+                                FXMLLoader loader = new FXMLLoader(getClass().getResource("../../view/add/addDiagnose.fxml"));
+                                //loader.setControllerFactory(addDiagnoseController -> new addDiagnoseController(this));
+                                openPopup(loader);
+                            } else if(tab.equals(Doktor)){
+                                FXMLLoader loader = new FXMLLoader(getClass().getResource("../../view/add/addDoktor.fxml"));
+                                //loader.setControllerFactory(addDoktorController -> new addDoktorController(this));
+                                openPopup(loader);
+                            } else if(tab.equals(Kontaktdaten)){
+                                FXMLLoader loader = new FXMLLoader(getClass().getResource("../../view/add/addKontaktdaten.fxml"));
+                                //loader.setControllerFactory(addKontaktdatenController -> new addKontaktdatenController(this));
+                                openPopup(loader);
+                            } else if(tab.equals(Labor)){
+                                FXMLLoader loader = new FXMLLoader(getClass().getResource("../../view/add/addLabor.fxml"));
+                                //loader.setControllerFactory(addLaborController -> new addLaborController(this));
+                                openPopup(loader);
+                            } else if(tab.equals(Patient)){
+                                FXMLLoader loader = new FXMLLoader(getClass().getResource("../../view/add/addPatient.fxml"));
+                                //loader.setControllerFactory(addPatientController -> new addPatientController(this));
+                                openPopup(loader);
+                            } else if(tab.equals(Raum)){
+                                FXMLLoader loader = new FXMLLoader(getClass().getResource("../../view/add/addRaum.fxml"));
+                                //loader.setControllerFactory(addRaumController -> new addRaumController(this));
+                                openPopup(loader);
+                            } else if(tab.equals(Rechnung)){
+                                FXMLLoader loader = new FXMLLoader(getClass().getResource("../../view/add/addRechnung.fxml"));
+                                //loader.setControllerFactory(addRechnungController -> new addRechnungController(this));
+                                openPopup(loader);
+                            }
 
-                            FXMLLoader loader = new FXMLLoader(getClass().getResource("../../view/add/addAbteilung.fxml"));
-                            loader.setControllerFactory(controller-> new editAbteilungController((String) data.get(0),(String) data.get(1), (String) data.get(2),(String)data.get(3), main));
-                            openPopup(loader);
+
                         });
                     }
 
