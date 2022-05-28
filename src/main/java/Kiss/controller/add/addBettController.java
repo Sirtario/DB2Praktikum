@@ -5,6 +5,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.ObservableListBase;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 
 import java.sql.ResultSet;
@@ -22,10 +23,15 @@ public class addBettController {
     }
 
     @FXML
-    protected void onClickSaveEntry() throws SQLException {
-        String querry = "INSERT INTO Bett (RaumID) VALUES ("+RaumBox.getSelectionModel().getSelectedItem()+");";
-        mainViewController.getDb().runQuerry(querry);
-        mainViewController.getPopupStage().close();
+    private void onClickSaveEntry() throws SQLException {
+        if(mainViewController.fieldIsFilled(RaumBox.getSelectionModel().getSelectedItem())) {
+            String querry = "INSERT INTO Bett (RaumID) VALUES ("+RaumBox.getSelectionModel().getSelectedItem()+");";
+            mainViewController.getDb().runQuerry(querry);
+            mainViewController.getPopupStage().close();
+        }
+        else {
+            mainViewController.showAlert(Alert.AlertType.ERROR, "Bett");
+        }
     }
 
     @FXML

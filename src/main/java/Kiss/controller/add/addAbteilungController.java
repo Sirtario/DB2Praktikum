@@ -3,6 +3,7 @@ package Kiss.controller.add;
 import Kiss.Datenbank;
 import Kiss.controller.MainViewController;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 
 import java.sql.SQLException;
@@ -19,11 +20,15 @@ public class addAbteilungController {
     }
 
     @FXML
-    protected void onClickSaveEntry() throws SQLException {
-        String querry = "INSERT INTO Abteilung (AbteilungsBeschreibung, AbteilungsStandort, AbteilungsName) VALUES ('"+
-                BeschreibungText.getText()+"','"+StandortText.getText()+"','"+AbteilungsnameText.getText()+"');";
-        mainViewController.getDb().runQuerry(querry);
-        mainViewController.getPopupStage().close();
+    private void onClickSaveEntry() throws SQLException {
+        if (mainViewController.fieldIsFilled(BeschreibungText.getText()) && mainViewController.fieldIsFilled(StandortText.getText()) && mainViewController.fieldIsFilled(AbteilungsnameText.getText())) {
+            String querry = "INSERT INTO Abteilung (AbteilungsBeschreibung, AbteilungsStandort, AbteilungsName) VALUES ('" +
+                    BeschreibungText.getText() + "','" + StandortText.getText() + "','" + AbteilungsnameText.getText() + "');";
+            mainViewController.getDb().runQuerry(querry);
+            mainViewController.getPopupStage().close();
+        } else {
+            mainViewController.showAlert(Alert.AlertType.ERROR, "Abteilung");
+        }
     }
 
     @FXML

@@ -2,6 +2,7 @@ package Kiss.controller.add;
 
 import Kiss.controller.MainViewController;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
@@ -46,13 +47,23 @@ public class addDoktorController {
     }
 
     @FXML
-    protected void onClickSaveEntry() throws SQLException {
-        String querry = "INSERT INTO Doktor (Vorname, Nachname, Geschlecht, Geburtstag, Fachrichtung, KontaktdatenID)" +
-                " VALUES ('"+VornameText.getText()+"', '"+NachnameText.getText()+"', '"+GeschlechtBox.getSelectionModel().getSelectedItem()+
-                "', '" +GeburtstagPicker.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))+
-                "', '" +FachrichtungText.getText()+"', "+KontaktdatenBox.getSelectionModel().getSelectedItem()+");";
-        mainViewController.getDb().runQuerry(querry);
-        mainViewController.getPopupStage().close();
+    private void onClickSaveEntry() throws SQLException {
+        if(mainViewController.fieldIsFilled(VornameText.getText()) &&
+                mainViewController.fieldIsFilled(NachnameText.getText()) &&
+                mainViewController.fieldIsFilled(GeschlechtBox.getSelectionModel().getSelectedItem()) &&
+                mainViewController.fieldIsFilled(GeburtstagPicker.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))) &&
+                mainViewController.fieldIsFilled(FachrichtungText.getText()) &&
+                mainViewController.fieldIsFilled(KontaktdatenBox.getSelectionModel().getSelectedItem())
+        ) {
+            String querry = "INSERT INTO Doktor (Vorname, Nachname, Geschlecht, Geburtstag, Fachrichtung, KontaktdatenID)" +
+                    " VALUES ('"+VornameText.getText()+"', '"+NachnameText.getText()+"', '"+GeschlechtBox.getSelectionModel().getSelectedItem()+
+                    "', '" +GeburtstagPicker.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))+
+                    "', '" +FachrichtungText.getText()+"', "+KontaktdatenBox.getSelectionModel().getSelectedItem()+");";
+            mainViewController.getDb().runQuerry(querry);
+            mainViewController.getPopupStage().close();
+        } else {
+            mainViewController.showAlert(Alert.AlertType.ERROR,"Doktor");
+        }
     }
 
     @FXML

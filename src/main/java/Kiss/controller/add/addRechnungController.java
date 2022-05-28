@@ -2,6 +2,7 @@ package Kiss.controller.add;
 
 import Kiss.controller.MainViewController;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 
@@ -69,15 +70,22 @@ public class addRechnungController {
     }
 
     @FXML
-    protected void onClickSaveEntry() throws SQLException {
-        String querry = "INSERT INTO Rechnung (AnzahlTage, LaborID, RaumID, DoktorID, PatientenID) VALUES ("+
-                anzTageText.getText()+","+LaborBox.getSelectionModel().getSelectedItem()+", "+RaumBox.getSelectionModel().getSelectedItem()+", "+
-                getDoktorID(DoktorBox.getSelectionModel().getSelectedItem())+", "+
-                getPatientID(PatientBox.getSelectionModel().getSelectedItem())+");";
-        mainViewController.getDb().runQuerry(querry);
-        mainViewController.getPopupStage().close();
+    private void onClickSaveEntry() throws SQLException {
+        if (mainViewController.fieldIsFilled(anzTageText.getText()) &&
+                mainViewController.fieldIsFilled(LaborBox.getSelectionModel().getSelectedItem()) &&
+                mainViewController.fieldIsFilled(RaumBox.getSelectionModel().getSelectedItem()) &&
+                mainViewController.fieldIsFilled(DoktorBox.getSelectionModel().getSelectedItem()) &&
+                mainViewController.fieldIsFilled(PatientBox.getSelectionModel().getSelectedItem())) {
+            String querry = "INSERT INTO Rechnung (AnzahlTage, LaborID, RaumID, DoktorID, PatientenID) VALUES (" +
+                    anzTageText.getText() + "," + LaborBox.getSelectionModel().getSelectedItem() + ", " + RaumBox.getSelectionModel().getSelectedItem() + ", " +
+                    getDoktorID(DoktorBox.getSelectionModel().getSelectedItem()) + ", " +
+                    getPatientID(PatientBox.getSelectionModel().getSelectedItem()) + ");";
+            mainViewController.getDb().runQuerry(querry);
+            mainViewController.getPopupStage().close();
+        } else {
+            mainViewController.showAlert(Alert.AlertType.ERROR, "Rechnung");
+        }
     }
-
     @FXML
     private void onClickCancel(){
         mainViewController.getPopupStage().close();
