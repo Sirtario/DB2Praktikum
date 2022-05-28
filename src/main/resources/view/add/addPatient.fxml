@@ -53,8 +53,8 @@
             <ComboBox fx:id="KontaktdatenBox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
             <TextField fx:id="BehandlungsnummerText" GridPane.columnIndex="1" GridPane.rowIndex="5" />
             <TextField fx:id="VersicherungsnummerText" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-            <Button mnemonicParsing="false" onAction="#onClickSaveEntry" text="Button" GridPane.halignment="CENTER" GridPane.rowIndex="11" />
-            <Button mnemonicParsing="false" onAction="#onClickCancel" text="Button" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="11" />
+            <Button mnemonicParsing="false" onAction="#onClickSaveEntry" text="save" GridPane.halignment="CENTER" GridPane.rowIndex="11" />
+            <Button mnemonicParsing="false" onAction="#onClickCancel" text="cancel" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="11" />
          </children>
       </GridPane>
    </children>

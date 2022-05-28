@@ -77,7 +77,7 @@
    <bottom>
       <ButtonBar prefHeight="0.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <buttons>
-            <Button fx:id="addButton" mnemonicParsing="false" onAction="#onAddButtonClick" text="Button" />
+            <Button fx:id="addButton" mnemonicParsing="false" onAction="#onAddButtonClick" text="add" />
          </buttons>
       </ButtonBar>
    </bottom>

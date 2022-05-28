@@ -35,8 +35,8 @@
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Kontaktdaten" GridPane.rowIndex="6" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Fachrichtung" GridPane.rowIndex="4" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Geburtstag" GridPane.rowIndex="3" />
-            <Button mnemonicParsing="false" onAction="#onClickSaveEntry" text="Button" GridPane.halignment="CENTER" GridPane.rowIndex="7" />
-            <Button mnemonicParsing="false" onAction="#onClickCancel" text="Button" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="7" />
+            <Button mnemonicParsing="false" onAction="#onClickSaveEntry" text="save" GridPane.halignment="CENTER" GridPane.rowIndex="7" />
+            <Button mnemonicParsing="false" onAction="#onClickCancel" text="cancle" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="7" />
             <ComboBox fx:id="KontaktdatenBox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
             <ComboBox fx:id="GeschlechtBox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
             <TextField fx:id="FachrichtungText" GridPane.columnIndex="1" GridPane.rowIndex="4" />
