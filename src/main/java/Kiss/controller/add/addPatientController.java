@@ -11,14 +11,14 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public class addPatientController {
-    private MainViewController mainViewController;
+    protected MainViewController mainViewController;
 
     @FXML
-    private DatePicker datePicker;
+    protected DatePicker datePicker;
     @FXML
-    private TextField NachnameText, VornameText, VersicherungsnummerText, BehandlungsnummerText;
+    protected TextField NachnameText, VornameText, VersicherungsnummerText, BehandlungsnummerText;
     @FXML
-    private ComboBox<String> StationaerBox, KontaktdatenBox, DoktorBox, LaborBox, GeschlechtBox;
+    protected ComboBox<String> StationaerBox, KontaktdatenBox, DoktorBox, LaborBox, GeschlechtBox;
 
     public addPatientController(MainViewController mainViewController) {
         this.mainViewController =  mainViewController;
@@ -71,7 +71,7 @@ public class addPatientController {
     }
 
     @FXML
-    private void onClickSaveEntry() throws SQLException {
+    protected void onClickSaveEntry() throws SQLException {
         String querry = "INSERT INTO Patient (Nachname, Vorname, Versicherungsnummer, Behandlungsnummer, Geburtstag, Stationaer, KontaktdatenID, LaborID, DoktorID, Geschlecht) VALUES ('"
                 + NachnameText.getText()+"', '"+VornameText.getText()+"', '"+VersicherungsnummerText.getText()+"', '"+BehandlungsnummerText.getText()+"', '"+
                 datePicker.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))+"',"+StationaerBox.getSelectionModel().getSelectedItem()+", "+

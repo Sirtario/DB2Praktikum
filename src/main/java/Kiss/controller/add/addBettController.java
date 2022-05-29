@@ -14,15 +14,15 @@ import java.util.ArrayList;
 
 public class addBettController {
     @FXML
-    private ComboBox<String> RaumBox;
-    private MainViewController mainViewController;
+    protected ComboBox<String> RaumBox;
+    protected MainViewController mainViewController;
 
     public addBettController(MainViewController mainViewController) {
         this.mainViewController =  mainViewController;
     }
 
     @FXML
-    private void onClickSaveEntry() throws SQLException {
+    protected void onClickSaveEntry() throws SQLException {
         String querry = "INSERT INTO Bett (RaumID) VALUES ("+RaumBox.getSelectionModel().getSelectedItem()+");";
         mainViewController.getDb().runQuerry(querry);
         mainViewController.getPopupStage().close();

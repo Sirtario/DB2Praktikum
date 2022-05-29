@@ -11,14 +11,14 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public class addLaborController {
-    private MainViewController mainViewController;
+    protected MainViewController mainViewController;
 
     @FXML
-    private TextField MengeText;
+    protected TextField MengeText;
     @FXML
-    private DatePicker datePicker;
+    protected DatePicker datePicker;
     @FXML
-    private ComboBox<String> DoktorBox;
+    protected ComboBox<String> DoktorBox;
 
     public addLaborController(MainViewController mainViewController) {
         this.mainViewController =  mainViewController;
@@ -45,7 +45,7 @@ public class addLaborController {
     }
 
     @FXML
-    private void onClickSaveEntry() throws SQLException {
+    protected void onClickSaveEntry() throws SQLException {
         String querry = "INSERT INTO Labor (Menge, Datum, DoktorID) VALUES ('"+
                 MengeText.getText()+"','"+datePicker.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))+"',"+
                 getDoktorID(DoktorBox.getSelectionModel().getSelectedItem())+");";

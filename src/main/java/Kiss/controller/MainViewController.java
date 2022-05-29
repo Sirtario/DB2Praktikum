@@ -2,9 +2,9 @@ package Kiss.controller;
 
 import Kiss.Datenbank;
 import Kiss.controller.add.*;
+import Kiss.controller.edit.*;
 import Kiss.model.XmlExporterService;
 import Kiss.model.XmlExporterServiceImpl;
-import com.microsoft.sqlserver.jdbc.SQLServerException;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -37,6 +37,8 @@ public class MainViewController {
     MenuItem exportMenuButton;
 
     private Stage popupStage;
+
+
 
     private Datenbank db;
     @FXML
@@ -209,36 +211,6 @@ public class MainViewController {
         return popupStage;
     }
 
-
-    @FXML
-    private void onDeleteButtonClick() throws SQLException {
-        /*
-        Tab tab = tabPane.getSelectionModel().getSelectedItem();
-        String querry = "";
-        if(tab.equals(Abteilung)){
-            querry = "DELETE FROM Abteilung WHERE AbteilungsID = "++";"; //TODO: ID des ausgewählten Elements
-        } else if(tab.equals(Bett)){
-            querry = "DELETE FROM Bett WHERE BettID = "++";"; //TODO: ID des ausgewählten Elements
-        } else if(tab.equals(Diagnose)){
-            querry = "DELETE FROM Diagnose WHERE DiagnoseID = "++";"; //TODO: ID des ausgewählten Elements
-        } else if(tab.equals(Doktor)){
-            querry = "DELETE FROM Doktor WHERE DoktorID = "++";"; //TODO: ID des ausgewählten Elements
-        } else if(tab.equals(Kontaktdaten)){
-            querry = "DELETE FROM Kontaktdaten WHERE KontkatdatenID = "++";"; //TODO: ID des ausgewählten Elements
-        } else if(tab.equals(Labor)){
-            querry = "DELETE FROM Labor WHERE LaborID = "++";"; //TODO: ID des ausgewählten Elements
-        } else if(tab.equals(Patient)){
-            querry = "DELETE FROM Patient WHERE PatientID = "++";"; //TODO: ID des ausgewählten Elements
-        } else if(tab.equals(Raum)){
-            querry = "DELETE FROM Raum WHERE RaumID = "++";"; //TODO: ID des ausgewählten Elements
-        } else if(tab.equals(Rechnung)){
-            querry = "DELETE FROM Rechnung WHERE RechnungsID = "++";"; //TODO: ID des ausgewählten Elements
-        }
-        db.runQuerry(querry);
-
-     */
-    }
-
     @FXML
     private void onAddButtonClick() throws SQLException{
         Tab tab = tabPane.getSelectionModel().getSelectedItem();
@@ -332,12 +304,17 @@ public class MainViewController {
  * @param primaryKey name of the pk in the table*/
     private void SetButtonsToTable(TableView tableView, String tableName, String primaryKey)
     {
-        TableColumn<ObservableList,String> buttonColumn = new TableColumn<>("Delete");
+        TableColumn<ObservableList,String> deleteButtonColumn = new TableColumn<>("Delete");
+        TableColumn<ObservableList,String> editButtonColumn = new TableColumn<>("Edit");
 
-        Callback<TableColumn<ObservableList, String>, TableCell<ObservableList, String>> cellFactory = generateDeleteCellFactory(tableName,primaryKey);
-        buttonColumn.setCellFactory(cellFactory);
+        Callback<TableColumn<ObservableList, String>, TableCell<ObservableList, String>> deleteCellFactory = generateDeleteCellFactory(tableName,primaryKey);
+        deleteButtonColumn.setCellFactory(deleteCellFactory);
 
-        tableView.getColumns().add(buttonColumn);
+        Callback<TableColumn<ObservableList,String>,TableCell<ObservableList,String>> editCellFactory = generateEditCellFactory();
+        editButtonColumn.setCellFactory(editCellFactory);
+
+        tableView.getColumns().add(editButtonColumn);
+        tableView.getColumns().add(deleteButtonColumn);
     }
 
     /**
@@ -382,13 +359,142 @@ public class MainViewController {
     }
 
     /**
+     * Generates a CellFactory with edit button and injects the data to be changed
+     */
+    private Callback<TableColumn<ObservableList, String>, TableCell<ObservableList, String>> generateEditCellFactory() {
+        MainViewController main = this;
+
+        Callback<TableColumn<ObservableList,String>,TableCell<ObservableList,String>> cellFactory = new Callback<>() {
+
+            @Override
+            public TableCell<ObservableList, String> call(TableColumn<ObservableList, String> param) {
+                final TableCell<ObservableList, String> cell = new TableCell<ObservableList, String>() {
+
+                    private final Button btn = new Button("Edit");
+
+                    {
+                        btn.setOnAction((ActionEvent event) -> {
+                            ObservableList data = getTableView().getItems().get(getIndex());
+
+
+                            Tab tab = tabPane.getSelectionModel().getSelectedItem();
+                            if(tab.equals(Abteilung)){
+                                FXMLLoader loader = new FXMLLoader(getClass().getResource("../../view/add/addAbteilung.fxml"));
+                                loader.setControllerFactory(editAbteilungController -> new editAbteilungController((String) data.get(0),(String)data.get(1),(String) data.get(2),(String) data.get(3),main));
+                                openPopup(loader);
+                            } else if(tab.equals(Bett)){
+                                FXMLLoader loader = new FXMLLoader(getClass().getResource("../../view/add/addBett.fxml"));
+                                loader.setControllerFactory(editBettController -> new editBettController((String) data.get(0),(String) data.get(1), main));
+                                openPopup(loader);
+                            } else if(tab.equals(Diagnose)){
+                                FXMLLoader loader = new FXMLLoader(getClass().getResource("../../view/add/addDiagnose.fxml"));
+                                loader.setControllerFactory(editDiagnoseController -> new editDiagnoseController(
+                                        (String)data.get(0),
+                                        (String)data.get(1),
+                                        (String)data.get(2),
+                                        main));
+                                openPopup(loader);
+                            } else if(tab.equals(Doktor)){
+                                FXMLLoader loader = new FXMLLoader(getClass().getResource("../../view/add/addDoktor.fxml"));
+                                loader.setControllerFactory(editDoktorController -> new editDoktorController(
+                                        (String) data.get(0),
+                                        (String) data.get(1),
+                                        (String) data.get(2),
+                                        (String) data.get(3),
+                                        (String )data.get(4),
+                                        (String) data.get(5),
+                                        (String)data.get(6),
+                                        main));
+                                openPopup(loader);
+                            } else if(tab.equals(Kontaktdaten)){
+                                FXMLLoader loader = new FXMLLoader(getClass().getResource("../../view/add/addKontaktdaten.fxml"));
+                                loader.setControllerFactory(editKontaktdatenController -> new editKontaktdatenController(
+                                        (String) data.get(0),
+                                        (String) data.get(1),
+                                        (String) data.get(2),
+                                        (String) data.get(3),
+                                        (String) data.get(4),
+                                        (String) data.get(5),
+                                        main
+                                ));
+                                openPopup(loader);
+                            } else if(tab.equals(Labor)){
+                                FXMLLoader loader = new FXMLLoader(getClass().getResource("../../view/add/addLabor.fxml"));
+                                loader.setControllerFactory(editLaborController -> new editLaborController(
+                                        (String) data.get(0),
+                                        (String) data.get(1),
+                                        (String) data.get(2),
+                                        (String) data.get(3),
+                                        main));
+                                openPopup(loader);
+                            } else if(tab.equals(Patient)){
+                                FXMLLoader loader = new FXMLLoader(getClass().getResource("../../view/add/addPatient.fxml"));
+                                loader.setControllerFactory(editPatientController -> new editPatientController(
+                                        (String) data.get(0),
+                                        (String) data.get(1),
+                                        (String) data.get(2),
+                                        (String) data.get(3),
+                                        (String) data.get(4),
+                                        (String) data.get(5),
+                                        (String) data.get(6),
+                                        (String) data.get(7),
+                                        (String) data.get(8),
+                                        (String) data.get(9),
+                                        (String) data.get(10),
+                                        main));
+                                openPopup(loader);
+                            } else if(tab.equals(Raum)){
+                                FXMLLoader loader = new FXMLLoader(getClass().getResource("../../view/add/addRaum.fxml"));
+                                loader.setControllerFactory(editRaumController -> new editRaumController(
+                                        (String)data.get(0),
+                                        (String)data.get(1),
+                                        (String)data.get(2),
+                                        (String)data.get(3),
+                                        main));
+                                openPopup(loader);
+                            } else if(tab.equals(Rechnung)){
+                                FXMLLoader loader = new FXMLLoader(getClass().getResource("../../view/add/addRechnung.fxml"));
+                                loader.setControllerFactory(editRechnugController -> new editRechnungController(
+                                        (String)data.get(0),
+                                        (String)data.get(1),
+                                        (String)data.get(2),
+                                        (String)data.get(3),
+                                        (String)data.get(4),
+                                        (String)data.get(5),
+                                        main));
+                                openPopup(loader);
+                            }
+
+
+                        });
+                    }
+
+                    @Override
+                    public void updateItem(String item, boolean empty) {
+                        super.updateItem(item, empty);
+                        if (empty) {
+                            setGraphic(null);
+                        } else {
+                            setGraphic(btn);
+                        }
+                    }
+                };
+                return cell;
+            }
+        };
+        return cellFactory;
+    }
+
+    /**
      * Removes everything from the Tableview*/
     private void ClearTable(TableView table)
     {
-        int lastelementindex = table.getColumns().size()-1;
+        if(table.getColumns().size()==0){return;}
+
+        int lastelementindex = table.getColumns().size();
         table.getColumns().remove(0,lastelementindex);
 
-        lastelementindex = table.getItems().size()-1;
+        lastelementindex = table.getItems().size();
         table.getItems().remove(0,lastelementindex);
     }
 }

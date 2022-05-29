@@ -10,16 +10,16 @@ import java.sql.SQLException;
 
 public class addAbteilungController {
     @FXML
-    private TextField AbteilungsnameText, BeschreibungText, StandortText;
+    protected TextField AbteilungsnameText, BeschreibungText, StandortText;
 
-    private MainViewController mainViewController;
+    protected MainViewController mainViewController;
 
     public addAbteilungController(MainViewController mainViewController){
         this.mainViewController = mainViewController;
     }
 
     @FXML
-    private void onClickSaveEntry() throws SQLException {
+    protected void onClickSaveEntry() throws SQLException {
         String querry = "INSERT INTO Abteilung (AbteilungsBeschreibung, AbteilungsStandort, AbteilungsName) VALUES ('"+
                 BeschreibungText.getText()+"','"+StandortText.getText()+"','"+AbteilungsnameText.getText()+"');";
         mainViewController.getDb().runQuerry(querry);
@@ -30,4 +30,5 @@ public class addAbteilungController {
     private void onClickCancel(){
         mainViewController.getPopupStage().close();
     }
+
 }
