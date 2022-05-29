@@ -2,6 +2,7 @@ package Kiss.controller.add;
 
 import Kiss.controller.MainViewController;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
@@ -71,14 +72,30 @@ public class addPatientController {
     }
 
     @FXML
-    protected void onClickSaveEntry() throws SQLException {
-        String querry = "INSERT INTO Patient (Nachname, Vorname, Versicherungsnummer, Behandlungsnummer, Geburtstag, Stationaer, KontaktdatenID, LaborID, DoktorID, Geschlecht) VALUES ('"
-                + NachnameText.getText()+"', '"+VornameText.getText()+"', '"+VersicherungsnummerText.getText()+"', '"+BehandlungsnummerText.getText()+"', '"+
-                datePicker.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))+"',"+StationaerBox.getSelectionModel().getSelectedItem()+", "+
-                KontaktdatenBox.getSelectionModel().getSelectedItem()+", "+LaborBox.getSelectionModel().getSelectedItem()+", "+
-                getDoktorID(DoktorBox.getSelectionModel().getSelectedItem())+", '"+GeschlechtBox.getSelectionModel().getSelectedItem()+"');";
-        mainViewController.getDb().runQuerry(querry);
-        mainViewController.getPopupStage().close();
+    private void onClickSaveEntry() throws SQLException {
+        if(datePicker.getValue() != null &&
+                mainViewController.fieldIsFilled(NachnameText.getText()) &&
+                mainViewController.fieldIsFilled(VornameText.getText()) &&
+                mainViewController.fieldIsFilled(VersicherungsnummerText.getText()) &&
+                mainViewController.fieldIsFilled(BehandlungsnummerText.getText()) &&
+                mainViewController.fieldIsFilled(datePicker.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))) &&
+                mainViewController.fieldIsFilled(StationaerBox.getSelectionModel().getSelectedItem()) &&
+                mainViewController.fieldIsFilled(KontaktdatenBox.getSelectionModel().getSelectedItem()) &&
+                mainViewController.fieldIsFilled(LaborBox.getSelectionModel().getSelectedItem()) &&
+                mainViewController.fieldIsFilled(DoktorBox.getSelectionModel().getSelectedItem()) &&
+                mainViewController.fieldIsFilled(GeschlechtBox.getSelectionModel().getSelectedItem())
+                ) {
+            String querry = "INSERT INTO Patient (Nachname, Vorname, Versicherungsnummer, Behandlungsnummer, Geburtstag, Stationaer, KontaktdatenID, LaborID, DoktorID, Geschlecht) VALUES ('"
+                    + NachnameText.getText()+"', '"+VornameText.getText()+"', '"+VersicherungsnummerText.getText()+"', '"+BehandlungsnummerText.getText()+"', '"+
+                    datePicker.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))+"',"+StationaerBox.getSelectionModel().getSelectedItem()+", "+
+                    KontaktdatenBox.getSelectionModel().getSelectedItem()+", "+LaborBox.getSelectionModel().getSelectedItem()+", "+
+                    getDoktorID(DoktorBox.getSelectionModel().getSelectedItem())+", '"+GeschlechtBox.getSelectionModel().getSelectedItem()+"');";
+
+            mainViewController.getDb().runQuerry(querry);
+            mainViewController.getPopupStage().close();
+        } else {
+            mainViewController.showAlert(Alert.AlertType.ERROR,"Patient");
+        }
     }
 
     @FXML

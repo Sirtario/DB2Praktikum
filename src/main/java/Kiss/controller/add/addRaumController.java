@@ -2,6 +2,7 @@ package Kiss.controller.add;
 
 import Kiss.controller.MainViewController;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 
@@ -46,12 +47,16 @@ public class addRaumController {
     }
 
     @FXML
-    protected void onClickSaveEntry() throws SQLException {
-        String querry = "INSERT INTO Raum (RaumTyp, Status, AbteilungsID) VALUES ('"+
-                RaumText.getText()+"',"+StatusBox.getSelectionModel().getSelectedItem()+","+
-                getAbteilungID(AbteilungBox.getSelectionModel().getSelectedItem())+");";
-        mainViewController.getDb().runQuerry(querry);
-        mainViewController.getPopupStage().close();
+    private void onClickSaveEntry() throws SQLException {
+        if(mainViewController.fieldIsFilled(RaumText.getText()) && mainViewController.fieldIsFilled(StatusBox.getSelectionModel().getSelectedItem()) && mainViewController.fieldIsFilled(AbteilungBox.getSelectionModel().getSelectedItem())) {
+            String querry = "INSERT INTO Raum (RaumTyp, Status, AbteilungsID) VALUES ('"+
+                    RaumText.getText()+"',"+StatusBox.getSelectionModel().getSelectedItem()+","+
+                    getAbteilungID(AbteilungBox.getSelectionModel().getSelectedItem())+");";
+            mainViewController.getDb().runQuerry(querry);
+            mainViewController.getPopupStage().close();
+        } else {
+            mainViewController.showAlert(Alert.AlertType.ERROR, "Raum");
+        }
     }
 
     @FXML

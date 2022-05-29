@@ -41,6 +41,10 @@ public class MainViewController {
 
 
     private Datenbank db;
+
+    public static final String HIER_IST_NICHTS = "Hier ist nichts!";
+    private static final String STANDARD_MESSAGE_CONTENT = "Alle nötigen Felder müssen ausgefüllt werden!";
+
     @FXML
     public void initialize(){
         Abteilung.setOnSelectionChanged(selectionChanged->
@@ -496,5 +500,26 @@ public class MainViewController {
 
         lastelementindex = table.getItems().size();
         table.getItems().remove(0,lastelementindex);
+    }
+
+    public boolean fieldIsFilled(String field) {
+        if (field != null && !field.equals("")) {
+            if (!field.equals(HIER_IST_NICHTS)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void showAlert(Alert.AlertType alertType, String titel){
+        Alert alert = new Alert(Alert.AlertType.INFORMATION, STANDARD_MESSAGE_CONTENT, ButtonType.OK);
+        alert.setTitle(titel);
+        alert.show();
+    }
+
+    public void showAlert(Alert.AlertType alertType, String titel, String contentText){
+        Alert alert = new Alert(Alert.AlertType.INFORMATION, contentText, ButtonType.OK);
+        alert.setTitle(titel);
+        alert.show();
     }
 }
