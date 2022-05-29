@@ -445,7 +445,12 @@ public class MainViewController {
                                 openPopup(loader);
                             } else if(tab.equals(Raum)){
                                 FXMLLoader loader = new FXMLLoader(getClass().getResource("../../view/add/addRaum.fxml"));
-                                //loader.setControllerFactory(addRaumController -> new addRaumController(this));
+                                loader.setControllerFactory(editRaumController -> new editRaumController(
+                                        (String)data.get(0),
+                                        (String)data.get(1),
+                                        (String)data.get(2),
+                                        (String)data.get(3),
+                                        main));
                                 openPopup(loader);
                             } else if(tab.equals(Rechnung)){
                                 FXMLLoader loader = new FXMLLoader(getClass().getResource("../../view/add/addRechnung.fxml"));

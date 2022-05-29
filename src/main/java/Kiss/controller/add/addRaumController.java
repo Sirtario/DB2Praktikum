@@ -9,12 +9,12 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class addRaumController {
-    private MainViewController mainViewController;
+    protected MainViewController mainViewController;
 
     @FXML
-    private TextField RaumText;
+    protected TextField RaumText;
     @FXML
-    private ComboBox<String> StatusBox, AbteilungBox;
+    protected ComboBox<String> StatusBox, AbteilungBox;
 
     public addRaumController(MainViewController mainViewController) {
         this.mainViewController =  mainViewController;
@@ -46,7 +46,7 @@ public class addRaumController {
     }
 
     @FXML
-    private void onClickSaveEntry() throws SQLException {
+    protected void onClickSaveEntry() throws SQLException {
         String querry = "INSERT INTO Raum (RaumTyp, Status, AbteilungsID) VALUES ('"+
                 RaumText.getText()+"',"+StatusBox.getSelectionModel().getSelectedItem()+","+
                 getAbteilungID(AbteilungBox.getSelectionModel().getSelectedItem())+");";
