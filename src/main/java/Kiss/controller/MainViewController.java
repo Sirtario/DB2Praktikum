@@ -2,10 +2,7 @@ package Kiss.controller;
 
 import Kiss.Datenbank;
 import Kiss.controller.add.*;
-import Kiss.controller.edit.editAbteilungController;
-import Kiss.controller.edit.editBettController;
-import Kiss.controller.edit.editDiagnoseController;
-import Kiss.controller.edit.editDoktorController;
+import Kiss.controller.edit.*;
 import Kiss.model.XmlExporterService;
 import Kiss.model.XmlExporterServiceImpl;
 import javafx.beans.property.SimpleStringProperty;
@@ -411,7 +408,15 @@ public class MainViewController {
                                 openPopup(loader);
                             } else if(tab.equals(Kontaktdaten)){
                                 FXMLLoader loader = new FXMLLoader(getClass().getResource("../../view/add/addKontaktdaten.fxml"));
-                                //loader.setControllerFactory(addKontaktdatenController -> new addKontaktdatenController(this));
+                                loader.setControllerFactory(editKontaktdatenController -> new editKontaktdatenController(
+                                        (String) data.get(0),
+                                        (String) data.get(1),
+                                        (String) data.get(2),
+                                        (String) data.get(3),
+                                        (String) data.get(4),
+                                        (String) data.get(5),
+                                        main
+                                ));
                                 openPopup(loader);
                             } else if(tab.equals(Labor)){
                                 FXMLLoader loader = new FXMLLoader(getClass().getResource("../../view/add/addLabor.fxml"));

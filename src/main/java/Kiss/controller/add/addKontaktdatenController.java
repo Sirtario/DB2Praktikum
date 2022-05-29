@@ -7,18 +7,18 @@ import javafx.scene.control.TextField;
 import java.sql.SQLException;
 
 public class addKontaktdatenController {
-    private MainViewController mainViewController;
+    protected MainViewController mainViewController;
 
     @FXML
-    private TextField TelefonText, EMailText, StrasseText, PLZText, StadtText;
+    protected TextField TelefonText, EMailText, StrasseText, PLZText, StadtText;
 
     public addKontaktdatenController(MainViewController mainViewController){
         this.mainViewController =  mainViewController;
     }
 
     @FXML
-    private void onClickSaveEntry() throws SQLException {
-        String querry = "INSERT INTO Kontaktdaten (Telefon, EMail, Straße, PLZ, Stadt) VALUES ('"+
+    protected void onClickSaveEntry() throws SQLException {
+        String querry = "INSERT INTO Kontaktdaten (Telefon, EMail, Strasse, PLZ, Stadt) VALUES ('"+
                 TelefonText.getText()+"','"+EMailText.getText()+"','"+StrasseText.getText()+"','"+PLZText.getText()+"', '"+StadtText.getText()+"');";
         mainViewController.getDb().runQuerry(querry);
         mainViewController.getPopupStage().close();
