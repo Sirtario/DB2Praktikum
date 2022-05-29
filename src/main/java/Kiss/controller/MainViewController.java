@@ -454,7 +454,14 @@ public class MainViewController {
                                 openPopup(loader);
                             } else if(tab.equals(Rechnung)){
                                 FXMLLoader loader = new FXMLLoader(getClass().getResource("../../view/add/addRechnung.fxml"));
-                                //loader.setControllerFactory(addRechnungController -> new addRechnungController(this));
+                                loader.setControllerFactory(editRechnugController -> new editRechnungController(
+                                        (String)data.get(0),
+                                        (String)data.get(1),
+                                        (String)data.get(2),
+                                        (String)data.get(3),
+                                        (String)data.get(4),
+                                        (String)data.get(5),
+                                        main));
                                 openPopup(loader);
                             }
 

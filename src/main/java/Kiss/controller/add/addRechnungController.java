@@ -9,12 +9,12 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class addRechnungController {
-    private MainViewController mainViewController;
+    protected MainViewController mainViewController;
 
     @FXML
-    private TextField anzTageText;
+    protected TextField anzTageText;
     @FXML
-    private ComboBox<String> LaborBox, RaumBox, DoktorBox, PatientBox;
+    protected ComboBox<String> LaborBox, RaumBox, DoktorBox, PatientBox;
 
     public addRechnungController(MainViewController mainViewController) {
         this.mainViewController =  mainViewController;
@@ -69,7 +69,7 @@ public class addRechnungController {
     }
 
     @FXML
-    private void onClickSaveEntry() throws SQLException {
+    protected void onClickSaveEntry() throws SQLException {
         String querry = "INSERT INTO Rechnung (AnzahlTage, LaborID, RaumID, DoktorID, PatientenID) VALUES ("+
                 anzTageText.getText()+","+LaborBox.getSelectionModel().getSelectedItem()+", "+RaumBox.getSelectionModel().getSelectedItem()+", "+
                 getDoktorID(DoktorBox.getSelectionModel().getSelectedItem())+", "+
