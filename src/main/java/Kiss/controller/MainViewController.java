@@ -420,7 +420,12 @@ public class MainViewController {
                                 openPopup(loader);
                             } else if(tab.equals(Labor)){
                                 FXMLLoader loader = new FXMLLoader(getClass().getResource("../../view/add/addLabor.fxml"));
-                                //loader.setControllerFactory(addLaborController -> new addLaborController(this));
+                                loader.setControllerFactory(editLaborController -> new editLaborController(
+                                        (String) data.get(0),
+                                        (String) data.get(1),
+                                        (String) data.get(2),
+                                        (String) data.get(3),
+                                        main));
                                 openPopup(loader);
                             } else if(tab.equals(Patient)){
                                 FXMLLoader loader = new FXMLLoader(getClass().getResource("../../view/add/addPatient.fxml"));
