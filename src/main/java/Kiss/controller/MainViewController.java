@@ -5,6 +5,7 @@ import Kiss.controller.add.*;
 import Kiss.controller.edit.editAbteilungController;
 import Kiss.controller.edit.editBettController;
 import Kiss.controller.edit.editDiagnoseController;
+import Kiss.controller.edit.editDoktorController;
 import Kiss.model.XmlExporterService;
 import Kiss.model.XmlExporterServiceImpl;
 import javafx.beans.property.SimpleStringProperty;
@@ -390,11 +391,23 @@ public class MainViewController {
                                 openPopup(loader);
                             } else if(tab.equals(Diagnose)){
                                 FXMLLoader loader = new FXMLLoader(getClass().getResource("../../view/add/addDiagnose.fxml"));
-                                loader.setControllerFactory(editDiagnoseController -> new editDiagnoseController((String)data.get(0),(String)data.get(1),(String)data.get(2),main));
+                                loader.setControllerFactory(editDiagnoseController -> new editDiagnoseController(
+                                        (String)data.get(0),
+                                        (String)data.get(1),
+                                        (String)data.get(2),
+                                        main));
                                 openPopup(loader);
                             } else if(tab.equals(Doktor)){
                                 FXMLLoader loader = new FXMLLoader(getClass().getResource("../../view/add/addDoktor.fxml"));
-                                //loader.setControllerFactory(addDoktorController -> new addDoktorController(this));
+                                loader.setControllerFactory(editDoktorController -> new editDoktorController(
+                                        (String) data.get(0),
+                                        (String) data.get(1),
+                                        (String) data.get(2),
+                                        (String) data.get(3),
+                                        (String )data.get(4),
+                                        (String) data.get(5),
+                                        (String)data.get(6),
+                                        main));
                                 openPopup(loader);
                             } else if(tab.equals(Kontaktdaten)){
                                 FXMLLoader loader = new FXMLLoader(getClass().getResource("../../view/add/addKontaktdaten.fxml"));
