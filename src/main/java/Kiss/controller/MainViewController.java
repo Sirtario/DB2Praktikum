@@ -503,7 +503,7 @@ public class MainViewController {
     }
 
     public boolean fieldIsFilled(String field) {
-        if (field != null) {
+        if (field != null && !field.equals("")) {
             if (!field.equals(HIER_IST_NICHTS)) {
                 return true;
             }

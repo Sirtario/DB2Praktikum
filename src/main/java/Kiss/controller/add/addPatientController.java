@@ -73,7 +73,8 @@ public class addPatientController {
 
     @FXML
     private void onClickSaveEntry() throws SQLException {
-        if(mainViewController.fieldIsFilled(NachnameText.getText()) &&
+        if(datePicker.getValue() != null &&
+                mainViewController.fieldIsFilled(NachnameText.getText()) &&
                 mainViewController.fieldIsFilled(VornameText.getText()) &&
                 mainViewController.fieldIsFilled(VersicherungsnummerText.getText()) &&
                 mainViewController.fieldIsFilled(BehandlungsnummerText.getText()) &&

@@ -47,7 +47,9 @@ public class addLaborController {
 
     @FXML
     private void onClickSaveEntry() throws SQLException {
-        if(mainViewController.fieldIsFilled(MengeText.getText()) &&
+
+        if(datePicker.getValue() != null &&
+                mainViewController.fieldIsFilled(MengeText.getText()) &&
                 mainViewController.fieldIsFilled(datePicker.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))) &&
                 mainViewController.fieldIsFilled(DoktorBox.getSelectionModel().getSelectedItem())) {
             String querry = "INSERT INTO Labor (Menge, Datum, DoktorID) VALUES ('"+
