@@ -429,7 +429,19 @@ public class MainViewController {
                                 openPopup(loader);
                             } else if(tab.equals(Patient)){
                                 FXMLLoader loader = new FXMLLoader(getClass().getResource("../../view/add/addPatient.fxml"));
-                                //loader.setControllerFactory(addPatientController -> new addPatientController(this));
+                                loader.setControllerFactory(editPatientController -> new editPatientController(
+                                        (String) data.get(0),
+                                        (String) data.get(1),
+                                        (String) data.get(2),
+                                        (String) data.get(3),
+                                        (String) data.get(4),
+                                        (String) data.get(5),
+                                        (String) data.get(6),
+                                        (String) data.get(7),
+                                        (String) data.get(8),
+                                        (String) data.get(9),
+                                        (String) data.get(10),
+                                        main));
                                 openPopup(loader);
                             } else if(tab.equals(Raum)){
                                 FXMLLoader loader = new FXMLLoader(getClass().getResource("../../view/add/addRaum.fxml"));
