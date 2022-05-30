@@ -42,7 +42,7 @@ public class addDiagnoseController {
     }
 
     @FXML
-    private void onClickSaveEntry() throws SQLException {
+    protected void onClickSaveEntry() throws SQLException {
         if(mainViewController.fieldIsFilled(BezeichnungText.getText()) && mainViewController.fieldIsFilled(PatientBox.getSelectionModel().getSelectedItem())) {
             String querry = "INSERT INTO Diagnose (PatientenID, DiagnoseBezeichnung) VALUES (" +
                     getPatientID(PatientBox.getSelectionModel().getSelectedItem()) + ", '" + BezeichnungText.getText() + "');";

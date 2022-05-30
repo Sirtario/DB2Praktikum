@@ -70,7 +70,7 @@ public class addRechnungController {
     }
 
     @FXML
-    private void onClickSaveEntry() throws SQLException {
+    protected void onClickSaveEntry() throws SQLException {
         if (mainViewController.fieldIsFilled(anzTageText.getText()) &&
                 mainViewController.fieldIsFilled(LaborBox.getSelectionModel().getSelectedItem()) &&
                 mainViewController.fieldIsFilled(RaumBox.getSelectionModel().getSelectedItem()) &&

@@ -20,7 +20,7 @@ public class addAbteilungController {
     }
 
     @FXML
-    private void onClickSaveEntry() throws SQLException {
+    protected void onClickSaveEntry() throws SQLException {
         if (mainViewController.fieldIsFilled(BeschreibungText.getText()) && mainViewController.fieldIsFilled(StandortText.getText()) && mainViewController.fieldIsFilled(AbteilungsnameText.getText())) {
             String querry = "INSERT INTO Abteilung (AbteilungsBeschreibung, AbteilungsStandort, AbteilungsName) VALUES ('" +
                     BeschreibungText.getText() + "','" + StandortText.getText() + "','" + AbteilungsnameText.getText() + "');";

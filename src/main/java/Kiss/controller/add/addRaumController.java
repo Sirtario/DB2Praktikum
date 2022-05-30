@@ -47,7 +47,7 @@ public class addRaumController {
     }
 
     @FXML
-    private void onClickSaveEntry() throws SQLException {
+    protected void onClickSaveEntry() throws SQLException {
         if(mainViewController.fieldIsFilled(RaumText.getText()) && mainViewController.fieldIsFilled(StatusBox.getSelectionModel().getSelectedItem()) && mainViewController.fieldIsFilled(AbteilungBox.getSelectionModel().getSelectedItem())) {
             String querry = "INSERT INTO Raum (RaumTyp, Status, AbteilungsID) VALUES ('"+
                     RaumText.getText()+"',"+StatusBox.getSelectionModel().getSelectedItem()+","+

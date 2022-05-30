@@ -23,7 +23,7 @@ public class addBettController {
     }
 
     @FXML
-    private void onClickSaveEntry() throws SQLException {
+    protected void onClickSaveEntry() throws SQLException {
         if(mainViewController.fieldIsFilled(RaumBox.getSelectionModel().getSelectedItem())) {
             String querry = "INSERT INTO Bett (RaumID) VALUES ("+RaumBox.getSelectionModel().getSelectedItem()+");";
             mainViewController.getDb().runQuerry(querry);

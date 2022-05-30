@@ -46,7 +46,7 @@ public class addLaborController {
     }
 
     @FXML
-    private void onClickSaveEntry() throws SQLException {
+    protected void onClickSaveEntry() throws SQLException {
 
         if(datePicker.getValue() != null &&
                 mainViewController.fieldIsFilled(MengeText.getText()) &&

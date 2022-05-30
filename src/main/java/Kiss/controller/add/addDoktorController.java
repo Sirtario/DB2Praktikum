@@ -47,7 +47,7 @@ public class addDoktorController {
     }
 
     @FXML
-    private void onClickSaveEntry() throws SQLException {
+    protected void onClickSaveEntry() throws SQLException {
         if(mainViewController.fieldIsFilled(VornameText.getText()) &&
                 mainViewController.fieldIsFilled(NachnameText.getText()) &&
                 mainViewController.fieldIsFilled(GeschlechtBox.getSelectionModel().getSelectedItem()) &&

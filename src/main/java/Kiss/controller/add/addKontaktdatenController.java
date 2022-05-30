@@ -18,7 +18,7 @@ public class addKontaktdatenController {
     }
 
     @FXML
-    private void onClickSaveEntry() throws SQLException {
+    protected void onClickSaveEntry() throws SQLException {
 
         if(mainViewController.fieldIsFilled(TelefonText.getText()) &&
                 mainViewController.fieldIsFilled(EMailText.getText()) &&
